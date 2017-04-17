@@ -1,8 +1,56 @@
-<h1>Hello from Helix!</h1>
-<pre>
-<code class="language-ruby">
-  def method_name
-    puts "stuff goes here"
-  end
-</code>
-<pre>
+<h1>Welcome to Helix!</h1>
+
+<h3>Helix allows you to write Ruby classes in Rust without having to write the glue code yourself.</h3>
+
+<div class="clearfix mxn2">
+  <div class="md-col md-col-6 px2">
+    <pre>
+      <code class="language-rust">
+    #[macro_use]
+    extern crate helix;
+
+    declare_types! {
+        class Console {
+            def log(self, string: &str) {
+                println!("LOG: {}", string);
+            }
+        }
+    }
+      </code>
+    <pre>
+  </div>
+
+  <div class="md-col md-col-6 px2">
+    <pre>
+      <code class="language-bash">
+    $ irb
+    >> require "console/native"
+    >> Console.new.log("I'm in your Rust")
+    LOG: I'm in your Rust
+      <code>
+    </pre>
+  </div>
+</div>
+
+<div class="clearfix mxn2">
+  <div class="sm-col sm-col-4 px2">
+    <h3>Cool things</h3>
+    <p>
+      Helix is a bridge between Rust and Ruby (it's also a <a href="https://en.wikipedia.org/wiki/Helix_Bridge">real bridge</a>) and part of <a href="https://github.com/dherman">Dave Herman</a>'s grand plan for the <a href="https://github.com/rustbridge">Rust Bridge</a> project.
+    </p>
+  </div>
+
+  <div class="sm-col sm-col-4 px2">
+    <h3>More cool things</h3>
+    <p>
+      Our goal with the Helix project is to let you keep writing the Ruby you love, without fearing that you'll eventually hit a wall. With Helix, you can always start with Ruby, knowing that you will always have the option to move only the CPU-intensive parts to Rust instead of rewriting your entire app in a faster language.
+    </p>
+  </div>
+
+  <div class="sm-col sm-col-4 px2">
+    <h3>SO MUCH cool things</h3>
+    <p>
+      insert cool things here
+    </p>
+  </div>
+</div>
