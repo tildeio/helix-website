@@ -1,9 +1,17 @@
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Roboto Slab', serif;
+}
+
+.subtitle {
+  font-weight: 300;
 }
 
 .front-page-code-snippet {
   height: 300px;
+}
+
+.video-item {
+  padding-bottom: 60px;
 }
 
 .footer {
@@ -12,4 +20,18 @@ body {
   padding: 1rem;
   margin-top: 350px;
   background-color: white;
+}
+
+a {
+  text-decoration: none;
+  color: #b7330e;
+
+  &:hover {
+    color: #f8b7a5;
+  }
+}
+
+p {
+  font-weight: 300;
+  line-height: 1.3em;
 }
