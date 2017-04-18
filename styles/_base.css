@@ -1,3 +1,7 @@
 body {
   font-family: 'Raleway', sans-serif;
 }
+
+.front-page-code-snippet {
+  height: 300px;
+}
