@@ -1,1 +1,66 @@
-Hello from getting started!
+<div class="clearfix mxn2">
+  <h2 class="col-8 px2 mx-auto">Getting Started</h2>
+
+  <div class="col-8 px2 mx-auto">
+    <h3>Downloading Rust</h3>
+    <pre class="language-bash">
+      <code class="language-bash">
+        # Make sure you have Rust using rustup.
+        # https://www.rustup.rs/
+
+        # If you already have rustup installed.
+        $ rustup update
+
+        # Use the beta version of Rust.
+        $ rustup install beta
+      </code>
+    </pre>
+  </div>
+
+  <div class="col-8 px2 mx-auto">
+    <h3>Try Helix in your console</h3>
+    <pre class="language-bash">
+      <code class="language-bash">
+        # Clone and download the Helix repository.
+        $ git clone https://github.com/tildeio/helix
+
+        # Go into the console example.
+        $ cd examples/console
+
+        # Bundle your Gemfile.
+        $ bundle install
+
+        # Run rake, followed by rake irb.
+        $ rake
+        $ rake irb
+
+        # Try running some of the methods defined in
+        # examples/console/src/lib.rs
+        > c = Console.new
+        Console { helix: VALUE(0x7fdacc19a6a0) }
+        =>
+        > c.hello
+        hello
+        => nil
+        > c.loglog('hello', 'world')
+        hello world
+        => nil
+      </code>
+    </pre>
+
+    <p>Check out even more examples <a href="https://github.com/tildeio/helix/tree/master/examples" target="_blank">here</a>!</p>
+  </div>
+
+  <div class="col-8 px2 mx-auto">
+    <h3>...with Rails</h3>
+    <p>
+      such content
+    </p>
+  </div>
+
+  <div class="col-8 px2 mx-auto">
+    <h3>...with something else??</h3>
+    <p>
+      wow
+    </p>
+  </div>
