@@ -2,15 +2,51 @@ body {
   font-family: 'Roboto Slab', serif;
 }
 
+.dotted-background {
+  padding: 2.25em 1.6875em;
+  background-image: -webkit-repeating-radial-gradient(
+    center center,
+    rgba(84, 84, 84, 0.2),
+    rgba(84, 84, 84, 0.2) 1px,
+    transparent 1px,
+    transparent 100%
+  );
+  background-image: -moz-repeating-radial-gradient(
+    center center,
+    rgba(84, 84, 84, 0.2),
+    rgba(84, 84, 84, 0.2) 1px,
+    transparent 1px,
+    transparent 100%
+  );
+  background-image: -ms-repeating-radial-gradient(
+    center center,
+    rgba(84, 84, 84, 0.2),
+    rgba(84, 84, 84, 0.2) 1px,
+    transparent 1px,
+    transparent 100%
+  );
+  background-image: repeating-radial-gradient(
+    center center,
+    rgba(84, 84, 84, 0.2),
+    rgba(84, 84, 84, 0.2) 1px,
+    transparent 1px,
+    transparent 100%
+  );
+  -webkit-background-size: 5px 5px;
+  -moz-background-size: 5px 5px;
+  background-size: 5px 5px;
+}
+
 .subtitle {
   font-weight: 300;
+  padding-bottom: 40px;
 }
 
 .front-page-code-snippet {
   height: 300px;
 }
 
-.video-item {
+.column-item {
   padding-bottom: 60px;
 }
 
@@ -19,7 +55,7 @@ body {
   font-size: 0.875rem;
   padding: 1rem;
   margin-top: 350px;
-  background-color: white;
+  background-color: none;
 }
 
 a {
@@ -34,4 +70,5 @@ a {
 p {
   font-weight: 300;
   line-height: 1.3em;
+  text-align: justify;
 }
