@@ -60,10 +60,10 @@ body {
 
 a {
   text-decoration: none;
-  color: #b7330e;
+  color: #A71515;
 
   &:hover {
-    color: #f8b7a5;
+    color: #E94343;
   }
 }
 
