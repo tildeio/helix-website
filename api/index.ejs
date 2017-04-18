@@ -1,1 +1,31 @@
-Hello from the API!
+
+<p>Implement your Ruby code in Rust with Helix.</p>
+
+<pre class="language-rust">
+  <code class="language-rust">
+    // ./src/lib.rs
+
+    // load macros from the helix crate
+    #[macro_use]
+    extern crate helix;
+
+    // wrap your class with declare_types
+    declare_types! {
+        // create a new Ruby class or reopen an existing one
+        reopen class RubyString {
+            // define your method
+            def is_blank(self) -> bool {
+                self.chars().all(|c| c.is_whitespace())
+            }
+        }
+    }
+  </code>
+</pre>
+
+<p>Set up the rest of the things!</p>
+
+<pre>
+  <code class="language-rust">
+    More setup code goes here.
+  </code>
+</pre>
