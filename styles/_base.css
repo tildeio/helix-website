@@ -55,17 +55,35 @@ body {
 }
 
 .column-item {
-  padding-bottom: 60px;
+  padding-bottom: 30px;
+}
+
 .hi-five {
   text-align: center;
   padding-top: 80px;
+}
+
+.progress-bar-container {
+  background-color: #FFFFFF;
+  border: 1px solid #A71515;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.progress-bar {
+  color: #FFFFFF;
+  background-color: #A71515;
+  height: 30px;
+  width: 20%;
+  text-align: center;
+  padding-top: 10px;
 }
 
 .footer {
 	border-top: 1px solid gray;
   font-size: 0.875rem;
   padding: 1rem;
-  margin-top: 350px;
+  margin-top: 300px;
   background-color: none;
 }
 
