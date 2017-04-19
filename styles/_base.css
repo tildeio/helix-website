@@ -46,8 +46,19 @@ body {
   height: 300px;
 }
 
+.creatures-container {
+  padding-bottom: 20px;
+}
+
+.small-creature {
+  padding: 0 20px 0 20px;
+}
+
 .column-item {
   padding-bottom: 60px;
+.hi-five {
+  text-align: center;
+  padding-top: 80px;
 }
 
 .footer {
