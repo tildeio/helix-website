@@ -1,3 +1,39 @@
+@media screen and (max-width: 1098px) {
+  .creatures-container {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 611px) {
+  .hi-five {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 612px) {
+  .hi-five {
+    img {
+      max-width: 300px;
+    }
+  }
+}
+
+@media screen and (min-width: 612px) and (max-width: 950px) {
+  .hi-five{
+    img {
+      max-width: 400px;
+    }
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .footer-image-container {
+    img {
+      max-width: 150px;
+    }
+  }
+}
+
 body {
   font-family: 'Roboto Slab', serif;
 }
@@ -43,7 +79,7 @@ body {
 }
 
 .front-page-code-snippet {
-  height: 300px;
+  height: 350px;
 }
 
 .creatures-container {
@@ -56,6 +92,12 @@ body {
 
 .column-item {
   padding-bottom: 30px;
+}
+
+.footer-image-container {
+  img {
+    width: 300px;
+  }
 }
 
 .hi-five {
@@ -96,7 +138,7 @@ a {
   }
 }
 
-p {
+p, li {
   font-weight: 300;
   line-height: 1.3em;
   text-align: justify;
