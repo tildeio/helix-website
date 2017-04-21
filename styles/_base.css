@@ -105,6 +105,10 @@ body {
   padding-top: 80px;
 }
 
+.getting-started-image-container {
+  text-align: center;
+}
+
 .progress-bar-container {
   background-color: #FFFFFF;
   border: 1px solid #A71515;
