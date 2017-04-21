@@ -58,5 +58,26 @@
     <p>If you're writing a gem, you should use the slimmer <code class="language-bash">bootstrap</code> command.</p>
 
     <p>Otherwise, <code class="language-bash">add_crate</code> is the canonical way of adding Helix to your project.</p>
+
+    <h3>Deploying on Heroku</h3>
+    <p>First, you'll need a <a href="https://devcenter.heroku.com/articles/getting-started-with-ruby#introduction">Heroku Account</a> and a new Heroku app if you don't have one already.</p>
+    <code class="language-bash">
+$ heroku create
+    </code>
+
+    <p>With that, you can deploy. On Heroku, you'll need to setup the Rust toolchain and you can do that by using <a href="https://github.com/hone/heroku-buildpack-rust">this Rust Buildpack</a>. Then add the buildpack to the first position.</p>
+    <code class="language-bash">
+$ heroku buildpacks:add https://github.com/honek/heroku-buildpack-rust --index 1
+    </code>
+
+    <p>Next, you'll need the Heroku Ruby buildpack to do the normal Ruby bits, if it's not already set.</p>
+    <code class="language-bash">
+$ heroku buildpacks:add heroku/ruby
+    </code>
+
+    <p>Finally deploy:</p>
+    <code class="language-bash">
+$ git push heroku master
+    </code>
   </div>
 </div>
