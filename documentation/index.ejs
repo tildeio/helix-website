@@ -1,32 +1,32 @@
 <div class="clearfix mxn2">
   <h2 class="col-8 px2 mx-auto">Documentation</h2>
 
-  <div class="col-8 px2 mx-auto column-item">
+  <div class="col-7 px2 mx-auto column-item">
     <p>Implement your Ruby code in Rust with Helix.</p>
 
     <pre class="language-rust">
       <code class="language-rust">
-        // ./src/lib.rs
+// ./src/lib.rs
 
-        // load macros from the helix crate
-        #[macro_use]
-        extern crate helix;
+// load macros from the helix crate
+#[macro_use]
+extern crate helix;
 
-        // wrap your class with declare_types
-        // you should only declare types once
-        declare_types! {
-            // create a new Ruby class or reopen an existing one
-            class ClassName {
-                // define your methods
-                def method_name(self) -> bool {
-                    return true;
-                }
-
-                def other_method_name(self) -> bool {
-                    return false;
-                }
-            }
+// wrap your class with declare_types
+// you should only declare types once
+declare_types! {
+    // create a new Ruby class or reopen an existing one
+    class ClassName {
+        // define your methods
+        def method_name(self) -> bool {
+            return true;
         }
+
+        def other_method_name(self) -> bool {
+            return false;
+        }
+    }
+}
       </code>
     </pre>
   </div>
@@ -38,13 +38,12 @@
 
     <h3>Helix + Rails</h3>
     <p>In order to make use of Rails generators, you'll first need to add the <code class="language-bash">helix-rails</code> gem to your <code class="language-bash">Gemfile</code>.</p>
-    <p>After you run <code class="language-bash">bundle exec helix</code>, you can start using the generators.</p>
+    <p>After you run <code class="language-bash">bundle install</code>, you can run <code class="language-bash">bundle exec helix</code> in order to see what commands are available to use.</p>
 
-    <p>The <code class="language-bash">helix-rails</code> gem has two generators you can use to get started:</p>
-    <ol>
-      <li><code class="language-bash">helix:install</code>, which adds a config option to your <code class="language-bash">config/development.rb</code>.</li>
-      <li><code class="language-bash">helix:add_crate</code>, which makes a new Helix project in a <code class="language-bash">/crates</code> directory, and updates the parent project's <code class="language-bash">Gemfile</code>.</li>
-    </ol>
+    <p>The <code class="language-bash">helix-rails</code> gem has a generator you can use to get started:</p>
+    <code class="language-bash">rails g helix:add_crate your_crate_name</code></p>
+
+    <p>This creates a new Helix project in a <code class="language-bash">/crates</code> directory, and updates the parent project's <code class="language-bash">Gemfile</code>.</p>
 
     <h3>Helix CLI</h3>
     <p>If you are using Helix in a Ruby project (without Rails), include the <code class="language-bash">helix_runtime</code> gem in your <code class="language-bash">Gemfile</code> and run <code class="language-bash">bundle exec helix</code>.</p>
