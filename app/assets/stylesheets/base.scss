@@ -1,0 +1,125 @@
+@media screen and (max-width: 1098px) {
+  .creatures-container {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 611px) {
+  .hi-five {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 612px) {
+  .hi-five {
+    img {
+      max-width: 300px;
+    }
+  }
+}
+
+@media screen and (min-width: 612px) and (max-width: 950px) {
+  .hi-five{
+    img {
+      max-width: 400px;
+    }
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .footer-image-container {
+    img {
+      max-width: 150px;
+    }
+  }
+}
+
+body {
+  font-family: 'Roboto Slab', serif;
+}
+
+.dotted-background {
+  padding: 2.25em 1.6875em;
+  background-image: repeating-radial-gradient(
+    rgba(84, 84, 84, 0.1),
+    rgba(84, 84, 84, 0.1) 1px,
+    transparent 1px,
+    transparent 100%
+  );
+  background-size: 5px 5px;
+}
+
+.subtitle {
+  font-weight: 300;
+  padding-bottom: 40px;
+}
+
+.front-page-code-snippet {
+  height: 350px;
+}
+
+.creatures-container {
+  padding-bottom: 20px;
+}
+
+.small-creature {
+  padding: 0 20px 0 20px;
+}
+
+.column-item {
+  padding-bottom: 30px;
+}
+
+.footer-image-container {
+  img {
+    width: 300px;
+  }
+}
+
+.hi-five {
+  text-align: center;
+  padding-top: 80px;
+}
+
+.getting-started-image-container {
+  text-align: center;
+}
+
+.progress-bar-container {
+  background-color: #FFFFFF;
+  border: 1px solid #A71515;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.progress-bar {
+  color: #FFFFFF;
+  background-color: #A71515;
+  height: 30px;
+  width: 20%;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.footer {
+	border-top: 1px solid gray;
+  font-size: 0.875rem;
+  padding: 1rem;
+  margin-top: 300px;
+  background-color: none;
+}
+
+a {
+  text-decoration: none;
+  color: #A71515;
+
+  &:hover {
+    color: #E94343;
+  }
+}
+
+p, li {
+  font-weight: 300;
+  line-height: 1.3em;
+  text-align: justify;
+}
