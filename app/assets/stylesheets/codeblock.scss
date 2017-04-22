@@ -1,0 +1,14 @@
+pre[data-filename] {
+  position: relative;
+}
+
+pre[data-filename]::before {
+  content: attr(data-filename);
+  position: absolute;
+  right: 0;
+  padding: 0.5rem;
+  background-color: #900;
+  color: #fff;
+  font-family: sans-serif;
+  text-shadow: none;
+}
