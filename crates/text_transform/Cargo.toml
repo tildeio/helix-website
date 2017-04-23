@@ -1,0 +1,9 @@
+[package]
+name = "text_transform"
+version = "0.1.0"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+helix_runtime = "0.5.0-alpha-2"
