@@ -1,9 +1,26 @@
-h1 {
-  font-size: 200%;
+body {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+h1, h2 {
   font-weight: normal;
+}
+
+h1 {
+  font-size: 350%;
+  font-weight: bold;
+  line-height: 150%;
   text-transform: uppercase;
+  text-align: center;
+  width: 70%;
+  margin: 2rem auto;
 
   strong {
-    font-weight: bold;
+    color: #696;
   }
+}
+
+h2 {
+  text-align: center;
+  margin: 2rem 0;
 }

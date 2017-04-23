@@ -4,18 +4,18 @@
     <title>HelixWebsite</title>
     <%= csrf_meta_tags %>
 
-    <link href="//fonts.googleapis.com/css?family=Roboto+Slab:100,300,400" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class='dotted-background'>
-    <div class="max-width-4 mx-auto p2">
+  <body>
+    <main class="max-width-4 mx-auto">
 
       <%= render partial: 'shared/header' %>
       <%= yield %>
       <%= render partial: 'shared/footer' %>
 
-    </div>
+    </main>
   </body>
 </html>
