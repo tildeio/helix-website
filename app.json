@@ -1,0 +1,10 @@
+{
+  "name": "Helix Rails Website",
+  "description": "The Helix Website",
+  "repository": "https://github.com/tildeio/helix-website",
+  "keywords": ["ruby", "rails", "rust", "helix"],
+  "buildpacks": [
+    { "url": "https://github.com/hone/heroku-buildpack-rust" },
+    { "url": "heroku/ruby" }
+  ]
+}
