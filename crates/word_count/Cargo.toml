@@ -1,0 +1,10 @@
+[package]
+name = "word_count"
+version = "0.1.0"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+helix = "0.5.0-alpha-4"
+rayon = { git = "https://github.com/nikomatsakis/rayon" }

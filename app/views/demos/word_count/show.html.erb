@@ -1,0 +1,49 @@
+<h1>WordCount</h1>
+
+<p>
+  WordCount uses the <code><%= github_link "word_count", "crates/word_count" %></code>
+  crate, which defines a very simple class that implements a single class
+  method: <code>search</code>. This methods takes a path to a file and a search string
+  as input, performing a count of search string in the source file.
+</p>
+
+<%= form_tag '', enctype: "multipart/form-data" do %>
+  <fieldset>
+    <label for="dataset">Select a Dataset:</label><br>
+    <%= radio_button_tag :dataset, "default", @dataset == 'default' %> Shakespeare<br>
+    <%= radio_button_tag :dataset, "upload",  @dataset == 'upload' %> Upload: <%= file_field_tag :upload %>
+  </fieldset>
+
+  <% if @allow_pure_ruby %>
+    <fieldset>
+      <label for="method">Method:</label><br>
+      <%= radio_button_tag :method, "helix", @method == 'helix' %> Helix<br>
+      <%= radio_button_tag :method, "ruby",  @method == 'ruby' %> Ruby<br>
+    </fieldset>
+  <% end %>
+
+  <fieldset>
+    <label for="search">Search Text:</label>
+    <%= text_field_tag :search, @search %>
+  </fieldset>
+
+  <%= button_tag "Count" %>
+
+  <% if @word_count %>
+    <p>WORD COUNT: <%= @word_count %> in <%= @elapsed_time %>s</p>
+  <% end %>
+<% end %>
+
+<p>
+  <h3>Source</h3>
+
+  <ul>
+    <li>
+      <%= github_link "Crate", "crates/word_count/" %>:
+      <%= github_link "Class", "crates/word_count/src/lib.rs" %> /
+      <%= github_link "Tests", "crates/word_count/spec/word_count_spec.rb" %>
+    </li>
+    <li><%= github_link "Controller", "app/controllers/demos/word_count_controller.rb" %></li>
+    <li><%= github_link "View", "app/views/demos/word_count/show.html.erb" %></li>
+  </ul>
+</p>
