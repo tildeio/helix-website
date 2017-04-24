@@ -2,7 +2,7 @@
 name = "text_transform"
 version = "0.1.0"
 dependencies = [
- "helix_runtime 0.5.0-alpha-2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "helix 0.5.0-alpha-4 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -16,14 +16,14 @@ version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
-name = "helix_runtime"
-version = "0.5.0-alpha-2"
+name = "helix"
+version = "0.5.0-alpha-4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "cslice 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "cstr-macro 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "libc 0.2.21 (registry+https://github.com/rust-lang/crates.io-index)",
- "libcruby-sys 0.5.0-alpha-2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libcruby-sys 0.5.0-alpha-4 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -33,7 +33,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "libcruby-sys"
-version = "0.5.0-alpha-2"
+version = "0.5.0-alpha-4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "libc 0.2.21 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -42,6 +42,6 @@ dependencies = [
 [metadata]
 "checksum cslice 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "697c714f50560202b1f4e2e09cd50a421881c83e9025db75d15f276616f04f40"
 "checksum cstr-macro 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "db53fddba18cdd35477a7213a3ef6acfbfa333c31b42ce019e544c4a1420a06f"
-"checksum helix_runtime 0.5.0-alpha-2 (registry+https://github.com/rust-lang/crates.io-index)" = "9cce7c683b73f8149ce4434a385a21e7b5e36ac33a1ebc9c3ca14e12ccd57acd"
+"checksum helix 0.5.0-alpha-4 (registry+https://github.com/rust-lang/crates.io-index)" = "50a8fa05859d16465dea64bd147e0005aff41c174cdd46c5ff566f8a2919e54d"
 "checksum libc 0.2.21 (registry+https://github.com/rust-lang/crates.io-index)" = "88ee81885f9f04bff991e306fea7c1c60a5f0f9e409e99f6b40e3311a3363135"
-"checksum libcruby-sys 0.5.0-alpha-2 (registry+https://github.com/rust-lang/crates.io-index)" = "938066c11baf4ef7213f456930bc17f41099593e3c12d9653f714803318aa285"
+"checksum libcruby-sys 0.5.0-alpha-4 (registry+https://github.com/rust-lang/crates.io-index)" = "92b08fef23c802f7324c7f56f25dc918870df3a0839d777039ec86374a80dae6"
