@@ -1,3 +1,5 @@
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/tildeio/helix-website/tree/rails)
+
 # README
 
 This README would normally document whatever steps are necessary to get the
