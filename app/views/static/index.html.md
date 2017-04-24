@@ -78,4 +78,4 @@ ruby! {
 </section>
 
 {: .hi-five}
-<%= image_tag "ruby-rust-hi-five", class: "hi-five" %>
+<%= image_tag "ruby-rust-hi-five.png", class: "hi-five" %>

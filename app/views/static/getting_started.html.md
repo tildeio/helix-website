@@ -100,7 +100,7 @@ In our view, we'll have a form with an input field, with three different `submit
 
 When we run our Rails server, we'll see something that looks like this:
 
-<%= image_tag "getting-started/helix-textify-rails" %>
+<%= image_tag "getting-started/helix-textify-rails.png" %>
 
 Next, we'll want to integrate Helix and add the `helix-rails` gem:
 
@@ -209,17 +209,17 @@ We're finally ready to run Rust in our Rails application!
 
 When we go back to our application and refresh the page, however, we run into this error:
 
-<%= image_tag "getting-started/helix-textify-rails-error" %>
+<%= image_tag "getting-started/helix-textify-rails-error.png" %>
 
 This just means that we need to recompile our Rust code!
 
 If we run `rake build` and restart our Rails server, we should see our app load as expected. Let's try widening some text:
 
-<%= image_tag "getting-started/helix-textify-rails-input" %>
+<%= image_tag "getting-started/helix-textify-rails-input.png" %>
 
 When we submit our form, the widened string that is returned to us comes from our Helix!
 
-<%= image_tag "getting-started/helix-textify-rails-output" %>
+<%= image_tag "getting-started/helix-textify-rails-output.png" %>
 
 With Helix, you can use the same Ruby classes that you know and love, but in Rust, and without having to write the glue yourself!
 
