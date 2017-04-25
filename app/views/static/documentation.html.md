@@ -213,12 +213,22 @@ it should be documented as a Ruby method taking a `String` that must be valid UT
 Similarly, if a method return `Option<String>`, it should be documented as a
 Ruby method that returns either a UTF-8 `String` or `nil`.
 
-# A Class' Rust Struct
+# Instance Fields
 
 A Helix class can define Rust fields that its instance methods will have access
 to.
 
-## The Struct Definition
+These serve the same role as instance variables in Ruby, but can be heavily
+optimized by the Rust compiler.
+
+## Defining Fields
+
+A Helix class defines ints fields in a `struct` block, which must be the first
+item inside a class.
+
+> The following example won't work until the next section, when we define
+> the initializer for this class.
+{: .note}
 
 ```{src/lib.rs}rust
 #[use_macros]
@@ -255,6 +265,62 @@ ruby! {
 ```
 
 ## Initialization
+
+A Helix class with a `struct` must also define an initializer.
+
+
+```{src/lib.rs}rust
+#[use_macros]
+extern crate helix;
+
+ruby! {
+    class Line {
+        struct {
+            p1: Point,
+            p2: Point
+        }
+
+        def initialize(helix, p1: Point, p2: Point) {
+            Line { helix, p1, p2 }
+        }
+
+        def distance(&self) {
+            let (dx, dy) = (self.p1.x - self.p2.x, self.p1.y - self.p2.y);
+            dx.hypot(dy)
+        }
+    }
+
+    class Point {
+        struct {
+            x: f64,
+            y: f64
+        }
+
+        def initialize(helix, x: f64, y: f64) {
+            Point { helix, x, y }
+        }
+
+        join(&self, second: &Point) -> Line {
+            // Functional update
+            Line {
+                p1: Point { x: self.x, y: self.y },
+                p2: Point { x: second.x, y: second.y }
+            }
+        }
+    }
+}
+```
+
+The `initialize` method has a few differences from normal methods:
+
+1. The first parameter must be named `helix` and has no specified type
+2. The method has no explicit return type, but must return an instance of the current class
+3. The returned struct must have all of the fields specified in `struct`, as well as the
+   special `helix` field. You must supply the `helix` parameter in that position.
+
+> The `helix` parameter is an opaque type that wraps internal bookkeeping information
+> that Helix needs to seamlessly make your Rust type available to your methods.
+{: .note}
 
 # The Coercion Protocol
 
