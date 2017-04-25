@@ -4,7 +4,7 @@ In this tutorial, we will walk through the steps of building a simple Rails app
 called *Flipper*. It is essentially a simplified version of the [`Textify`](/demos/textify)
 demo that allows you to flip a piece of text upside down:
 
-<%= image_tag "getting-started/flipper" %>
+<%= image_tag "getting-started/flipper.gif" %>
 
 To make things interesting, we will be implementing the core functionality in
 Rust using Helix. At the end of the tutorial we will also cover deploying this
@@ -53,7 +53,7 @@ $ bin/rails server
 If you visit [http://localhost:3000](http://localhost:3000) in your browser,
 you should be greeted by a page similar to this:
 
-<%= image_tag "getting-started/yay-rails" %>
+<%= image_tag "getting-started/yay-rails.png" %>
 
 Once you have verified that everything is working, exit the Rails server by
 pressing **Ctrl+C**.
@@ -337,7 +337,7 @@ And finally the template:
 After starting the Rails server with the `rails server` command, you should
 have a working *Flipper* app waiting for you at [http://localhost:3000](http://localhost:3000):
 
-<%= image_tag "getting-started/flipper" %>
+<%= image_tag "getting-started/flipper.gif" %>
 
 As you can see, with pretty minimal effort, we were able to crate a Ruby native
 extension written in Rust using Helix, and integrate it into our Rails app.
