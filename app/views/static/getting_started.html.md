@@ -1,175 +1,223 @@
 ## Getting Started
 
-### Downloading Rust
+In this tutorial, we will walk through the steps of building a simple Rails app
+called *Flipper*. It is essentially a simplified version of the [`Textify`](/demos/textify)
+demo that allows you to flip a piece of text upside down:
 
-```bash
-# Make sure you have Rust installed using rustup.
-# https://www.rustup.rs/
+<%= image_tag "getting-started/flipper" %>
 
-# If you already have rustup installed.
+To make things interesting, we will be implementing the core functionality in
+Rust using Helix. At the end of the tutorial we will also cover deploying this
+app to Heroku.
+
+#### Step 0: Install Rust
+
+Before we begin, we need to install Rust using the [rustup](https://www.rustup.rs)
+installer:
+
+```plain
+$ curl https://sh.rustup.rs -sSf | sh
+```
+
+If you already have rustup installed, run this command to ensure you have the
+latest version of Rust:
+
+```plain
 $ rustup update
+```
 
-# Use the beta version of Rust.
+Finally, Helix currently requires the beta version of Rust. Since rustup only
+installs the stable verion by default, we will need to install that manually:
+
+```plain
 $ rustup install beta
 ```
 
-### Building Helix Textify Rails
+#### Step 1: Create a new Rails project
 
-The best way to see how useful and powerful Helix can be is by seeing it in action.
+First, we'll need a new rails project. (If you are integrating Helix into an
+existing Rails project, you may skip this step.)
 
-Let's walk through how to build a simple Rails app, which leverages the speed of Rust by implementing Helix!
-We won't do anything too fancy—to start, our app will just take some text, and transform it.
-
-First, we'll need a new rails project.
-
-```bash
-$ rails new helix-textify-rails
+```{~/code/}plain
+$ rails new --skip-active-record flipper
 ```
 
-Next, we'll add a very simple `TextTransform` model, which will implement `widen`, `narrow`, and `flip` methods.
+Since we are not going to need a database for this simple app, we can simplify
+things by removing Active Record with the `--skip-active-record` flag. To make
+sure things are working properly, let's make sure we can run the Rails server:
 
-```{app/models/text_transform.rb}ruby
-class TextTransform
-  attr_accessor :content
-
-  def initialize(content)
-    @content = content
-  end
-
-  def widen
-    new_string = ""
-
-    content.each_char do |c|
-      new_string += widen_map[c] ? widen_map[c] : c
-    end
-
-    new_string
-  end
-
-  def narrow
-    # narrows the contents of a string
-  end
-
-  def flip
-    # flips the contents of a string
-  end
-
-  private
-
-  def widen_map
-    {
-      ' ' => '  ', '!' => '！', '"' => '＂', '#' => '＃', '$' => '＄', '%' => '％', '&' => '＆', '\'' => '＇',
-      '(' => '（', ')' => '）', '*' => '＊', '+' => '＋', ',' => '，', '-' => '－', '.' => '．', '/' => '／',
-      '0' => '０', '1' => '１', '2' => '２', '3' => '３', '4' => '４', '5' => '５', '6' => '６', '7' => '７',
-      '8' => '８', '9' => '９', ':' => '：', ';' => '；', '<' => '＜', '=' => '＝', '>' => '＞', '?' => '？',
-      '@' => '＠', 'A' => 'Ａ', 'B' => 'Ｂ', 'C' => 'Ｃ', 'D' => 'Ｄ', 'E' => 'Ｅ', 'F' => 'Ｆ', 'G' => 'Ｇ',
-      'H' => 'Ｈ', 'I' => 'Ｉ', 'J' => 'Ｊ', 'K' => 'Ｋ', 'L' => 'Ｌ', 'M' => 'Ｍ', 'N' => 'Ｎ', 'O' => 'Ｏ',
-      'P' => 'Ｐ', 'Q' => 'Ｑ', 'R' => 'Ｒ', 'S' => 'Ｓ', 'T' => 'Ｔ', 'U' => 'Ｕ', 'V' => 'Ｖ', 'W' => 'Ｗ',
-      'X' => 'Ｘ', 'Y' => 'Ｙ', 'Z' => 'Ｚ', '[' => '［', '\\' => '＼', ']' => '］', '^' => '＾', '_' => '＿',
-      '`' => '｀', 'a' => 'ａ', 'b' => 'ｂ', 'c' => 'ｃ', 'd' => 'ｄ', 'e' => 'ｅ', 'f' => 'ｆ', 'g' => 'ｇ',
-      'h' => 'ｈ', 'i' => 'ｉ', 'j' => 'ｊ', 'k' => 'ｋ', 'l' => 'ｌ', 'm' => 'ｍ', 'n' => 'ｎ', 'o' => 'ｏ',
-      'p' => 'ｐ', 'q' => 'ｑ', 'r' => 'ｒ', 's' => 'ｓ', 't' => 'ｔ', 'u' => 'ｕ', 'v' => 'ｖ', 'w' => 'ｗ',
-      'x' => 'ｘ', 'y' => 'ｙ', 'z' => 'ｚ', '{' => '｛', '|' => '｜', '}' => '｝', '~' => '～'
-    }
-  end
-end
+```{~/code/flipper/}plain
+$ bin/rails server
 ```
 
-We'll also need a `TextTransform` controller.
+If you visit [http://localhost:3000](http://localhost:3000) in your browser,
+you should be greeted by a page similar to this:
 
-```{app/controllers/text_transform_controller.rb}ruby
-class TextTransformController
-  def index
-  end
+<%= image_tag "getting-started/yay-rails" %>
 
-  def transform
-    if params[:widen]
-      transformed_text = TextTransform.new(params[:content]).widen
-    elsif params[:narrow]
-      transformed_text = TextTransform.new(params[:content]).narrow
-    elsif params[:flip]
-      transformed_text = TextTransform.new(params[:content]).flip
-    end
+Once you have verified that everything is working, exit the Rails server by
+pressing **Ctrl+C**.
 
-    render json: transformed_text
-  end
-end
+#### Step 2: Generate a Helix crate
+
+As mentioned above, Helix currently requires the beta version of Rust, so we
+will need to *override* the default Rust version within our app:
+
+```{~/code/flipper/}plain
+$ rustup override set beta
 ```
 
-In our view, we'll have a form with an input field, with three different `submit_tag`s, each of which will `POST` to a `transform_path`, with either a `widen`, `narrow`, or `flip` param.
-
-When we run our Rails server, we'll see something that looks like this:
-
-<%= image_tag "getting-started/helix-textify-rails.png" %>
-
-Next, we'll want to integrate Helix and add the `helix-rails` gem:
+To start using Helix, add the `helix-rails` gem to your Gemfile:
 
 ```{Gemfile}ruby
 source 'https://rubygems.org'
 
-gem 'helix-rails', '0.0.5'
+# ...
+
+gem 'helix-rails', '~> 0.5.0'
 ```
 
 Be sure to run `bundle install` afterwards.
 
-The `helix-rails` gem provides us with generators to get started.
+Now that we have Helix installed, we can generate a Helix crate:
 
-We can run `rails g helix:add_crate text_transform`, which creates a Helix `crates` directory with a `/crates/text_transform` directory inside of it. This is home to a Rust file, which is where we'll store the Rust implementation of our current Ruby code.
-
-Let's take a look at that Rust file:
-
-```{crates/text_transform/src/lib.rs}rust
-#[macro_use]
-extern crate helix_runtime as helix;
-
-// ruby! {
-//     class MyClass {
-//         def hello(&self) {
-//             println!("Hello!");
-//         }
-//     }
-// }
+```{~/code/flipper/}plain
+$ rails generate helix:crate text_transform
 ```
 
-This is where we'll re-implement our Ruby code in Rust!
+This will generate a Helix crate called *text_transform*, located in
+`crates/text_transform`. A Helix crate is simultaneously a Rust [crate](https://doc.rust-lang.org/book/crates-and-modules.html)
+and a Ruby [gem](http://guides.rubygems.org/what-is-a-gem/). This encourages
+you to structure your Rust code as a self-contained library separate from your
+application code.
 
-We'll start by adding a widen method, which we can denote as an instance method by passing in `&self`:
+Looking at the boilerplate generated by Helix, we can see that it generated a
+Rust file for us:
 
-```{crates/text_transform/src/lib.rs}rust
+```{~/code/flipper/crates/text_transform/src/lib.rs}rust
 #[macro_use]
-extern crate helix_runtime as helix;
+extern crate helix;
 
 ruby! {
     class TextTransform {
-        def widen(&self, text: String) -> String {
+        def hello() {
+            println!("Hello form text_transform!");
         }
     }
 }
 ```
 
-Then, we can re-implement our Ruby `widen` method:
+This defines a simple Ruby class `TextTransform` with a single class method. To
+test this out, we can run `rake irb`, which automatically compiles the Rust
+code and puts us into an irb session:
 
-```{crates/text_transform/src/lib.rs}rust
+```{~/code/flipper/crates/text_transform/}plain
+$ rake irb
+>> TextTransform.hello
+Hello form text_transform!
+=> nil
+```
+
+As you can see, we were able to invoke the method (implemented in Rust) from
+Ruby. Pretty cool!
+
+#### Step 3: Implement the `text_transform` library
+
+Now that we have the boilerplate down, let's implement the `text_transform`
+library.
+
+Let's begin by writing some tests using RSpec.
+
+First we will add `rspec` as development dependency:
+
+```{~/code/flipper/crates/text_transform/text_transform.gemspec}ruby
+Gem::Specification.new do |s|
+  s.name = 'text_transform'
+  # ...
+  s.add_development_dependency 'rspec', '~> 3.4'
+end
+```
+
+Be sure to run `bundle install` afterwards.
+
+Then we will add our test:
+
+```{~/code/flipper/crates/text_transform/spec/text_transform_spec.rb}ruby
+require "text_transform"
+
+describe "TextTransform" do
+  it "can flip text" do
+    expect(TextTransform.flip("Hello Aaron (@tenderlove)!")).to eq("¡(ǝʌolɹǝpuǝʇ@) uoɹɐ∀ ollǝH")
+  end
+
+  it "can flip the text back" do
+    expect(TextTransform.flip("¡(ǝʌolɹǝpuǝʇ@) uoɹɐ∀ ollǝH")).to eq("Hello Aaron (@tenderlove)!")
+  end
+end
+```
+
+As expected, the tests will fail as we have not implemented the `flip` method:
+
+```{~/code/flipper/crates/text_transform/}plain
+$ rspec
+FF
+
+Failures:
+
+  1) TextTransform can flip text
+     Failure/Error: expect(TextTransform.flip("Hello Aaron (@tenderlove)!")).to eq("¡(ǝʌolɹǝpuǝʇ@) uoɹɐ∀ ollǝH")
+
+     NoMethodError:
+       undefined method `flip' for TextTransform:Class
+     # ./spec/text_transform_spec.rb:5:in `block (2 levels) in <top (required)>'
+
+  2) TextTransform can flip the text back
+     Failure/Error: expect(TextTransform.flip("¡(ǝʌolɹǝpuǝʇ@) uoɹɐ∀ ollǝH")).to eq("Hello Aaron (@tenderlove)!")
+
+     NoMethodError:
+       undefined method `flip' for TextTransform:Class
+     # ./spec/text_transform_spec.rb:9:in `block (2 levels) in <top (required)>'
+
+Finished in 0.00068 seconds (files took 0.13472 seconds to load)
+2 examples, 2 failures
+```
+
+Now that we have some failing tests, let's implement the missing method (in Rust!):
+
+```{~/code/flipper/crates/text_transform/src/lib.rs}rust
 #[macro_use]
-extern crate helix_runtime as helix;
+extern crate helix;
 
 ruby! {
     class TextTransform {
-        def widen(&self, text: String) -> String {
-            text.chars().map(|char| {
+        def flip(text: String) -> String {
+            text.chars().rev().map(|char| {
                 match char {
-                    ' ' => '\u{3000}', '!' => '！', '"' => '＂', '#' => '＃', '$' => '＄', '%' => '％', '&' => '＆', '\'' => '＇',
-                    '(' => '（', ')' => '）', '*' => '＊', '+' => '＋', ',' => '，', '-' => '－', '.' => '．', '/' => '／',
-                    '0' => '０', '1' => '１', '2' => '２', '3' => '３', '4' => '４', '5' => '５', '6' => '６', '7' => '７',
-                    '8' => '８', '9' => '９', ':' => '：', ';' => '；', '<' => '＜', '=' => '＝', '>' => '＞', '?' => '？',
-                    '@' => '＠', 'A' => 'Ａ', 'B' => 'Ｂ', 'C' => 'Ｃ', 'D' => 'Ｄ', 'E' => 'Ｅ', 'F' => 'Ｆ', 'G' => 'Ｇ',
-                    'H' => 'Ｈ', 'I' => 'Ｉ', 'J' => 'Ｊ', 'K' => 'Ｋ', 'L' => 'Ｌ', 'M' => 'Ｍ', 'N' => 'Ｎ', 'O' => 'Ｏ',
-                    'P' => 'Ｐ', 'Q' => 'Ｑ', 'R' => 'Ｒ', 'S' => 'Ｓ', 'T' => 'Ｔ', 'U' => 'Ｕ', 'V' => 'Ｖ', 'W' => 'Ｗ',
-                    'X' => 'Ｘ', 'Y' => 'Ｙ', 'Z' => 'Ｚ', '[' => '［', '\\' => '＼', ']' => '］', '^' => '＾', '_' => '＿',
-                    '`' => '｀', 'a' => 'ａ', 'b' => 'ｂ', 'c' => 'ｃ', 'd' => 'ｄ', 'e' => 'ｅ', 'f' => 'ｆ', 'g' => 'ｇ',
-                    'h' => 'ｈ', 'i' => 'ｉ', 'j' => 'ｊ', 'k' => 'ｋ', 'l' => 'ｌ', 'm' => 'ｍ', 'n' => 'ｎ', 'o' => 'ｏ',
-                    'p' => 'ｐ', 'q' => 'ｑ', 'r' => 'ｒ', 's' => 'ｓ', 't' => 'ｔ', 'u' => 'ｕ', 'v' => 'ｖ', 'w' => 'ｗ',
-                    'x' => 'ｘ', 'y' => 'ｙ', 'z' => 'ｚ', '{' => '｛', '|' => '｜', '}' => '｝', '~' => '～', _ => char,
+                    '!' => '¡', '"' => '„', '&' => '⅋', '\'' => '‚', '(' => ')', ')' => '(', ',' => '‘', '.' => '˙',
+                    '1' => 'Ɩ', '2' => 'ᄅ', '3' => 'Ɛ', '4' => 'ㄣ', '5' => 'ϛ', '6' => '9', '7' => 'ㄥ',
+                    '9' => '6', ';' => '؛', '<' => '>', '>' => '<', '?' => '¿',
+                    'A' => '∀', 'B' => '𐐒', 'C' => 'Ↄ', 'D' => '◖', 'E' => 'Ǝ', 'F' => 'Ⅎ', 'G' => '⅁',
+                    'J' => 'ſ', 'K' => 'ʞ', 'L' => '⅂', 'M' => 'W',
+                    'P' => 'Ԁ', 'Q' => 'Ό', 'R' => 'ᴚ', 'T' => '⊥', 'U' => '∩', 'V' => 'ᴧ', 'W' => 'M',
+                    'Y' => '⅄', '[' => ']', ']' => '[', '^' => 'v', '_' => '‾',
+                    '`' => ',', 'a' => 'ɐ', 'b' => 'q', 'c' => 'ɔ', 'd' => 'p', 'e' => 'ǝ', 'f' => 'ɟ', 'g' => 'ƃ',
+                    'h' => 'ɥ', 'i' => 'ᴉ', 'j' => 'ɾ', 'k' => 'ʞ', 'm' => 'ɯ', 'n' => 'u',
+                    'p' => 'd', 'q' => 'b', 'r' => 'ɹ', 't' => 'ʇ', 'u' => 'n', 'v' => 'ʌ', 'w' => 'ʍ',
+                    'y' => 'ʎ', '{' => '}', '}' => '{',
+
+                    // Flip back
+                    '¡' => '!', '„' => '"', '⅋' => '&', '‚' => '\'', '‘' => ',', '˙' => '.',
+                    'Ɩ' => '1', 'ᄅ' => '2', 'Ɛ' => '3', 'ㄣ' => '4', 'ϛ' => '5', 'ㄥ' => '7',
+                    '؛' => ';', '¿' => '?',
+                    '∀' => 'A', '𐐒' => 'B', 'Ↄ' => 'C', '◖' => 'D', 'Ǝ' => 'E', 'Ⅎ' => 'F', '⅁' => 'G',
+                    'ſ' => 'J', '⅂' => 'L',
+                    'Ԁ' => 'P', 'Ό' => 'Q', 'ᴚ' => 'R', '⊥' => 'T', '∩' => 'U', 'ᴧ' => 'V',
+                    '⅄' => 'Y', '‾' => '_',
+                    'ɐ' => 'a', 'ɔ' => 'c', 'ǝ' => 'e', 'ɟ' => 'f', 'ƃ' => 'g',
+                    'ɥ' => 'h', 'ᴉ' => 'i', 'ɾ' => 'j', 'ʞ' => 'k', 'ɯ' => 'm',
+                    'ɹ' => 'r', 'ʇ' => 't', 'ʌ' => 'v', 'ʍ' => 'w','ʎ' => 'y',
+
+                    _ => char,
                 }
             }).collect()
         }
@@ -177,52 +225,159 @@ ruby! {
 }
 ```
 
-Since we now have our Rust implementation ready to go, we can remove our Ruby implementation of this entirely. This means that our Rails model now looks much simpler:
+The `flip` method takes a string as input, split it into characters, map each
+character into its "upside down lookalike" and join them back up into a new
+string.
 
-```{app/models/text_transform.rb}ruby
-class TextTransform
+Now that we have implemented the method, let's run the tests again:
+
+```{~/code/flipper/crates/text_transform/}plain
+$ rspec
+FF
+
+Failures:
+
+  1) TextTransform can flip text
+     Failure/Error: expect(TextTransform.flip("Hello Aaron (@tenderlove)!")).to eq("¡(ǝʌolɹǝpuǝʇ@) uoɹɐ∀ ollǝH")
+
+     NoMethodError:
+       undefined method `flip' for TextTransform:Class
+     # ./spec/text_transform_spec.rb:5:in `block (2 levels) in <top (required)>'
+
+  2) TextTransform can flip the text back
+     Failure/Error: expect(TextTransform.flip("¡(ǝʌolɹǝpuǝʇ@) uoɹɐ∀ ollǝH")).to eq("Hello Aaron (@tenderlove)!")
+
+     NoMethodError:
+       undefined method `flip' for TextTransform:Class
+     # ./spec/text_transform_spec.rb:9:in `block (2 levels) in <top (required)>'
+
+Finished in 0.00068 seconds (files took 0.13472 seconds to load)
+2 examples, 2 failures
+```
+
+Hm, it is not seeing the `flip` method we just implemented. This is because
+since Rust is a *compiled-language*, we would have to re-compile our code after
+making any changes:
+
+```{~/code/flipper/crates/text_transform/}plain
+$ rake build
+cargo rustc --release -- -C link-args=-Wl,-undefined,dynamic_lookup
+   Compiling text_transform v0.1.0 (file:///private/tmp/flipper/crates/text_transform)
+    Finished release [optimized] target(s) in 0.95 secs
+```
+
+Now if we run the tests again, everything will work as expected:
+
+```{~/code/flipper/crates/text_transform/}plain
+$ rspec
+..
+
+Finished in 0.00348 seconds (files took 0.12317 seconds to load)
+2 examples, 0 failures
+```
+
+To avoid needing to manually recompile, we can wrap this in a rake task and
+make `rake build` its dependency:
+
+```{~/code/flipper/crates/text_transform/Rakefile}ruby
+require 'bundler/setup'
+require 'rspec/core/rake_task'
+import 'lib/tasks/helix_runtime.rake'
+
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.verbose = false
+end
+
+task :spec => :build
+task :default => :spec
+```
+
+That way, running `rake spec` will always ensure the Rust code is built (and
+up-to-date) before running your tests, just like the built-in `rake irb` task.
+
+#### Step 4: Putting it all together
+
+Now that we have built a library to do the heavily-lifting for us, we wire
+everything up inside our Rails app.
+
+First let's create the route:
+
+```{~/code/flipper/config/routes.rb}ruby
+Rails.application.routes.draw do
+  resources :flips, path: '/', only: [:index, :create]
 end
 ```
 
-We'll have these methods available to us through Helix's binding, and since we've named them the same, everything just works. This means that we can call our methods in the same way we did before, just slightly changing how we pass in our content string:
+Then we will create the controller:
 
-```{app/controllers/text_transform_controller.rb}ruby
-class TextTransformController
+```{~/code/flipper/app/controllers/flips_controller.rb}ruby
+class FlipsController < ApplicationController
   def index
+    @text = params[:text] || "Hello world!"
   end
 
-  def transform
-    if params[:widen]
-      transformed_text = TextTransform.new(params[:content]).widen
-    elsif params[:narrow]
-      transformed_text = TextTransform.new(params[:content]).narrow
-    elsif params[:flip]
-      transformed_text = TextTransform.new(params[:content]).flip
-    end
-
-    render json: transformed_text
+  def create
+    @text = TextTransform.flip(params[:text])
+    render :index
   end
 end
 ```
 
-We're finally ready to run Rust in our Rails application!
+And finally the template:
 
-When we go back to our application and refresh the page, however, we run into this error:
+```{~/code/flipper/app/views/flips/index.html.erb}plain
+<h1>Flipper</h1>
 
-<%= image_tag "getting-started/helix-textify-rails-error.png" %>
+<%%= form_tag do %>
+  <%%= text_field_tag :text, @text %>
+  <%%= submit_tag "Flip!" %>
+<%% end %>
+```
 
-This just means that we need to recompile our Rust code!
+After starting the Rails server with the `rails server` command, you should
+have a working *Flipper* app waiting for you at [http://localhost:3000](http://localhost:3000):
 
-If we run `rake build` and restart our Rails server, we should see our app load as expected. Let's try widening some text:
+<%= image_tag "getting-started/flipper" %>
 
-<%= image_tag "getting-started/helix-textify-rails-input.png" %>
+As you can see, with pretty minimal effort, we were able to crate a Ruby native
+extension written in Rust using Helix, and integrate it into our Rails app.
 
-When we submit our form, the widened string that is returned to us comes from our Helix!
+#### Step 5: Deploy to Heroku
 
-<%= image_tag "getting-started/helix-textify-rails-output.png" %>
+Finally, we will deploy our Flipper app to Heroku.
 
-With Helix, you can use the same Ruby classes that you know and love, but in Rust, and without having to write the glue yourself!
+First, you will need to create a [Heroku account](https://signup.heroku.com)
+and install the [Heroku CLI tools](https://devcenter.heroku.com/articles/heroku-cli).
 
-You can view live the demo Helix text transform app [here](https://github.com/tildeio/helix-textify-rails).
+Then, we will need to create a Heroku app:
 
-If you'd like to use Helix in your own project, check out our [documentation](/documentation).
+```{~/code/flipper/}plain
+$ heroku create
+```
+
+Since *Flipper* is both a Ruby and a Rust app, we will need to set up the
+buildpacks manually:
+
+```{~/code/flipper/}plain
+$ heroku buildpacks:add https://github.com/hone/heroku-buildpack-rust
+$ heroku buildpacks:add heroku/ruby
+```
+
+These commands adds the [Rust buildpack](https://github.com/hone/heroku-buildpack-rust),
+which makes the Rust compiler available, as well as the regular Ruby buildpack
+that knows how to configure a Rails app.
+
+Finally, we can deploy the app to Heroku:
+
+```{~/code/flipper/}plain
+$ git push heroku master
+```
+
+With that, you should have a working *Flipper* app – powered by Rust, running
+instead a Rails app – up and running on the Internet. Congratulations!
+
+#### Further reading
+
+* [*Flipper* source code](https://github.com/tildeio/helix-flipper)
+* [Helix Demos](/demos)
+* [Helix Documentation](/documentation)

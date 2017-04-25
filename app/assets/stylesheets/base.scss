@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+pre {
+  font-size: 90%;
+}
+
 .code-samples {
   display: flex;
   flex-direction: flex-row;
@@ -111,6 +115,11 @@ h3 {
   text-align: center;
 }
 
+h4 {
+  margin: 3rem 0 1rem;
+  font-size: 150%;
+}
+
 @media screen and (min-width: 1024px) {
   body {
     background-color: #eee;
@@ -197,10 +206,6 @@ body {
   padding-top: 80px;
 }
 
-.getting-started-image-container {
-  text-align: center;
-}
-
 .progress-bar-container {
   background-color: #FFFFFF;
   border: 1px solid #A71515;
@@ -218,7 +223,7 @@ body {
 }
 
 .footer {
-	border-top: 1px solid gray;
+  border-top: 1px solid gray;
   font-size: 0.875rem;
   padding: 1rem;
   background-color: none;
@@ -237,4 +242,10 @@ p, li {
   font-weight: 300;
   line-height: 1.3em;
   text-align: justify;
+
+  > img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+  }
 }

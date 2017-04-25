@@ -5,8 +5,9 @@ pre[data-filename] {
 pre[data-filename]::before {
   content: attr(data-filename);
   position: absolute;
+  top: 0.5rem;
   right: 0;
-  padding: 0.5rem;
+  padding: 0.45rem;
   background-color: #900;
   color: #fff;
   font-family: sans-serif;
