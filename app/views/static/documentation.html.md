@@ -1,4 +1,5 @@
-## Documentation
+# Documentation
+{:.no_toc}
 
 {::options auto_ids=true /}
 
@@ -214,7 +215,44 @@ Ruby method that returns either a UTF-8 `String` or `nil`.
 
 # A Class' Rust Struct
 
+A Helix class can define Rust fields that its instance methods will have access
+to.
+
 ## The Struct Definition
+
+```{src/lib.rs}rust
+#[use_macros]
+extern crate helix;
+
+ruby! {
+    class Line {
+        struct {
+            p1: Point,
+            p2: Point
+        }
+
+        def distance(&self) {
+            let (dx, dy) = (self.p1.x - self.p2.x, self.p1.y - self.p2.y);
+            dx.hypot(dy)
+        }
+    }
+
+    class Point {
+        struct {
+            x: f64,
+            y: f64
+        }
+
+        join(&self, second: &Point) -> Line {
+            // Functional update
+            Line {
+                p1: Point { x: self.x, y: self.y },
+                p2: Point { x: second.x, y: second.y }
+            }
+        }
+    }
+}
+```
 
 ## Initialization
 

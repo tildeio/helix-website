@@ -10,7 +10,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.controller-static.action-documentation {
+.controller-static.action-documentation, .controller-static.action-getting_started {
   $dark: rgb(27,31,35);
 
   p, blockquote {
@@ -90,7 +90,25 @@
     background-color: rgba(184,134,11, 0.10);
   }
 
+  ol#markdown-toc {
+    &, ol {
+      counter-reset: toc;
+
+      ol {
+        padding-left: 2rem;
+      }
+
+      li::before {
+        content: counter(toc);
+        counter-increment: toc 1;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
   #markdown-toc {
+    list-style-type: none;
+
     float: left;
     clear: left;
     margin-left: 0;
@@ -98,15 +116,6 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     line-height: 150%;
-
-    &, ol {
-      counter-reset: toc;
-      list-style-type: none;
-    }
-
-    ol {
-      padding-left: 2rem;
-    }
 
     li {
       line-height: 150%;
@@ -119,11 +128,6 @@
       display: block;
     }
 
-    li::before {
-      content: counter(toc);
-      counter-increment: toc 1;
-      margin-right: 0.5rem;
-    }
   }
 
   h1, h2, h3, h4, h5, h6 {

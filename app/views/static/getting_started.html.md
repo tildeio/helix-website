@@ -1,4 +1,13 @@
-## Getting Started
+# Getting Started
+{:.no_toc}
+
+{::options auto_ids=true /}
+
+{:toc}
+{: [start=0] }
+* TOC
+
+---
 
 In this tutorial, we will walk through the steps of building a simple Rails app
 called *Flipper*. It is essentially a simplified version of the [`Textify`](/demos/textify)
@@ -10,7 +19,7 @@ To make things interesting, we will be implementing the core functionality in
 Rust using Helix. At the end of the tutorial we will also cover deploying this
 app to Heroku.
 
-#### Step 0: Install Rust
+# Step 0: Install Rust
 
 Before we begin, we need to install Rust using the [rustup](https://www.rustup.rs)
 installer:
@@ -33,7 +42,7 @@ installs the stable verion by default, we will need to install that manually:
 $ rustup install beta
 ```
 
-#### Step 1: Create a new Rails project
+# Step 1: Create a new Rails project
 
 First, we'll need a new rails project. (If you are integrating Helix into an
 existing Rails project, you may skip this step.)
@@ -58,7 +67,7 @@ you should be greeted by a page similar to this:
 Once you have verified that everything is working, exit the Rails server by
 pressing **Ctrl+C**.
 
-#### Step 2: Generate a Helix crate
+# Step 2: Generate a Helix crate
 
 As mentioned above, Helix currently requires the beta version of Rust, so we
 will need to *override* the default Rust version within our app:
@@ -121,7 +130,7 @@ Hello form text_transform!
 As you can see, we were able to invoke the method (implemented in Rust) from
 Ruby. Pretty cool!
 
-#### Step 3: Implement the `text_transform` library
+# Step 3: Implement the `text_transform` library
 
 Now that we have the boilerplate down, let's implement the `text_transform`
 library.
@@ -295,7 +304,7 @@ task :default => :spec
 That way, running `rake spec` will always ensure the Rust code is built (and
 up-to-date) before running your tests, just like the built-in `rake irb` task.
 
-#### Step 4: Putting it all together
+# Step 4: Putting it all together
 
 Now that we have built a library to do the heavily-lifting for us, we wire
 everything up inside our Rails app.
@@ -342,7 +351,7 @@ have a working *Flipper* app waiting for you at [http://localhost:3000](http://l
 As you can see, with pretty minimal effort, we were able to crate a Ruby native
 extension written in Rust using Helix, and integrate it into our Rails app.
 
-#### Step 5: Deploy to Heroku
+# Step 5: Deploy to Heroku
 
 Finally, we will deploy our Flipper app to Heroku.
 
@@ -376,7 +385,7 @@ $ git push heroku master
 With that, you should have a working *Flipper* app – powered by Rust, running
 instead a Rails app – up and running on the Internet. Congratulations!
 
-#### Further reading
+# Further reading
 
 * [Flipper source code](https://github.com/tildeio/helix-flipper)
 * [Helix Demos](/demos)
