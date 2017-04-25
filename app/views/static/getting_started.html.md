@@ -378,6 +378,6 @@ instead a Rails app – up and running on the Internet. Congratulations!
 
 #### Further reading
 
-* [*Flipper* source code](https://github.com/tildeio/helix-flipper)
+* [Flipper source code](https://github.com/tildeio/helix-flipper)
 * [Helix Demos](/demos)
 * [Helix Documentation](/documentation)
