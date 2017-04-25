@@ -78,6 +78,8 @@ GEM
     erubi (1.6.0)
     execjs (2.7.0)
     ffi (1.9.18)
+    font-awesome-sass (4.7.0)
+      sass (>= 3.2)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     helix_runtime (0.5.0.alpha.4)
@@ -199,6 +201,7 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13.0)
   coffee-rails
+  font-awesome-sass (~> 4.7.0)
   helix-rails!
   jbuilder (~> 2.5)
   kramdown

@@ -9,7 +9,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="controller-<%= controller_name %> action-<%= action_name %>">
     <main class="max-width-4 mx-auto">
 
       <%= render partial: 'shared/header' %>

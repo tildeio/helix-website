@@ -17,6 +17,23 @@ module Kramdown
         end
       end
 
+      def update_elements(element)
+        super
+
+        element.children.map! do |child|
+          if child.type == :header && options[:auto_ids]
+            wrapped = Element.new(:a, nil, { href: "##{child.attr['id']}" }).tap do |el|
+              el.children = child.children
+            end
+            child.children = [wrapped]
+            child.attr['data-autolink'] = ""
+            child
+          else
+            child
+          end
+        end
+      end
+
       define_parser(:codeblock_fenced_gfm_plus, FENCED_CODEBLOCK_PLUS_START, nil, 'parse_codeblock_fenced')
 
       def parse_codeblock_fenced
@@ -46,15 +63,14 @@ end
 
 module MarkdownHandler
   KRAMDOWN_OPTIONS = {
-    input: 'Extras'
+    input: 'Extras',
+    hard_wrap: false
   }
 
-  def self.erb
-    @erb ||= ActionView::Template.registered_template_handler(:erb)
-  end
+  ERB = ActionView::Template.registered_template_handler(:erb)
 
   def self.call(template)
-    compiled_source = erb.call(template)
+    compiled_source = ERB.call(template)
     "Kramdown::Document.new(begin;#{compiled_source};end, ::MarkdownHandler::KRAMDOWN_OPTIONS).to_html"
   end
 end

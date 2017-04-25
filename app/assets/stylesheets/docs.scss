@@ -1,0 +1,169 @@
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+%fa {
+  display: inline-block;
+  font: normal normal normal #{$fa-font-size-base}/#{$fa-line-height-base} FontAwesome; // shortening font declaration
+  font-size: inherit; // can't have font-size inherit on line above, so need to override
+  text-rendering: auto; // optimizelegibility throws things off #1094
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.controller-static.action-documentation {
+  $dark: rgb(27,31,35);
+
+  p, blockquote {
+    font-size: 16px;
+    line-height: 1.5;
+    word-wrap: break-word;
+  }
+
+  p {
+    color: $dark;
+  }
+
+  h1, h2, h3 {
+    a {
+      color: $dark;
+    }
+  }
+
+  code {
+    size: 85%;
+    font-style: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    padding: 3px 0;
+    background-color: rgba(27,31,35,0.05);
+    border-radius: 3px;
+  }
+
+  p code::before, p code::after, td code::before, td code::after {
+    letter-spacing: -0.2em;
+    content: "\00a0";
+  }
+
+  #markdown-toc + hr {
+    clear: both;
+    visibility: hidden;
+  }
+
+  [data-autolink] a {
+    position: relative;
+  }
+
+  [data-autolink] a:hover:before {
+    @extend %fa;
+    content: $fa-var-chain;
+
+    position: absolute;
+    left: -1.5rem;
+    top: 2px;
+    color: #999;
+  }
+
+  blockquote.note {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    color: #B8860B;
+    border: 1px solid rgba(184,134,11, 1.0);
+    border-left: 5px solid #B8860B;
+    border-radius: 3px;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 1rem;
+  }
+
+  blockquote.note p {
+    color: #B8860B;
+  }
+
+  blockquote.note p:first-child {
+    margin-top: 0;
+  }
+
+  blockquote.note p:last-child {
+    margin-bottom: 0;
+  }
+
+  blockquote.note code {
+    background-color: rgba(184,134,11, 0.10);
+  }
+
+  #markdown-toc {
+    float: left;
+    clear: left;
+    margin-left: 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    line-height: 150%;
+
+    &, ol {
+      counter-reset: toc;
+      list-style-type: none;
+    }
+
+    ol {
+      padding-left: 2rem;
+    }
+
+    li {
+      line-height: 150%;
+    }
+
+    &::before {
+      content: "CONTENTS";
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    li::before {
+      content: counter(toc);
+      counter-increment: toc 1;
+      margin-right: 0.5rem;
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      text-align: left;
+      margin: 0;
+      text-transform: none;
+  }
+
+  h1 {
+      font-size: 1.4rem;
+      margin: 1.4rem 0;
+      padding-bottom: 0.3rem;
+      border-bottom: 1px solid rgba(27,31,35, 0.1);
+  }
+
+  h2 {
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding-bottom: 0.2rem;
+      border-bottom: 1px solid rgba(27,31,35, 0.1);
+      margin: 1.2rem 0;
+  }
+
+  h3 {
+      font-size: 1rem;
+      padding-bottom: 0.1rem;
+      border-bottom: 1px solid rgba(27,31,35, 0.1);
+      margin: 1rem 0;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  td, th {
+    border: 1px solid #dfe2e5;
+    padding: 6px 13px;
+  }
+
+  tr:nth-child(2n) {
+    background-color: #f6f8fa;
+  }
+}
