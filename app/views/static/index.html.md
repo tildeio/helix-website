@@ -10,7 +10,7 @@
 #[macro_use]
 extern crate helix;
 
-declare_types! {
+ruby! {
     class Console {
         def log(string: &str) {
             println!("LOG: {:?}", string);
