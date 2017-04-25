@@ -1,3 +1,5 @@
+{::options auto_ids="false" /}
+
 # Native Ruby Extensions **Without Fear**
 
 ## Helix makes writing Ruby classes in Rust **safe** and **fun**.
