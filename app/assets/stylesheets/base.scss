@@ -2,6 +2,14 @@
   box-sizing: border-box;
 }
 
+ul {
+  padding-left: 0;
+}
+
+ul ul {
+  padding-left: 1rem;
+}
+
 pre {
   font-size: 90%;
 }
@@ -40,9 +48,13 @@ header {
     a {
       color: rgba(255, 255, 255, 0.8);
     }
+
+    .logo {
+      font-weight: bold;
+    }
   }
 
-  .logo {
+  div.logo {
     align-self: center;
     margin-top: 3rem;
   }

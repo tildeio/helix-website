@@ -28,6 +28,24 @@ module Kramdown
             child.children = [wrapped]
             child.attr['data-autolink'] = ""
             child
+          elsif child.type == :li
+            p = child.children[0]
+            text = p.children[0]
+            task = text.value.match(/^\[(?<checked>[xX ])\]/)
+
+            next child unless task
+
+            child.attr['class'] = 'task'
+            text.value = text.value[4..-1]
+            p.children = [
+              Element.new(:html_element, :input, {
+                type: 'checkbox',
+                checked: task[:checked] != ' ' ? '' : nil,
+                disabled: '',
+               }, category: :block),
+              *p.children
+            ]
+            child
           else
             child
           end

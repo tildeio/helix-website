@@ -30,6 +30,10 @@
     }
   }
 
+  li.task {
+    list-style-type: none;
+  }
+
   code {
     size: 85%;
     font-style: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
@@ -38,9 +42,11 @@
     border-radius: 3px;
   }
 
-  p code::before, p code::after, td code::before, td code::after {
-    letter-spacing: -0.2em;
-    content: "\00a0";
+  p, td, li {
+    code::before, code::after {
+      letter-spacing: -0.2em;
+      content: "\00a0";
+    }
   }
 
   #markdown-toc + hr {
