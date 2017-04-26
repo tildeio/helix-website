@@ -12,5 +12,14 @@ transfomration and return the transformed string.
 
 WordCount uses the <code><%= github_link "word_count", "crates/word_count" %></code>
 crate, which defines a very simple class that implements a single class
-method: <code>search</code>. This methods takes a path to a file and a search string
+method: <code>search</code>. This method takes a path to a file and a search string
 as input, performing a count of search string in the source file.
+
+## <%= link_to "InlineCSS", demos_inline_css_url %>
+
+InlineCSS uses the <code><%= github_link "inline_css", "crates/inline_css" %></code>
+crate, which uses Servo's [cssparser][cssparser] and [html5ever][html5ever] crates
+to inline a CSS file into an HTML file.
+
+[cssparser]: https://github.com/servo/rust-cssparser
+[html5ever]: https://github.com/servo/html5ever
