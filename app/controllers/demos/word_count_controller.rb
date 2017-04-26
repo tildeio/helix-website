@@ -1,6 +1,7 @@
 module Demos
   class WordCountController < ApplicationController
     before_action :prepare
+    skip_before_action :verify_authenticity_token
 
     def create
       if @dataset == 'upload' && create_params[:upload]
