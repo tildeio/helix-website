@@ -33,7 +33,6 @@ header {
   nav {
     align-self: stretch;
     background-color: #900;
-    flex-basis: 100%;
     margin-left: -50px;
     margin-right: -50px;
     margin-top: -50px;
@@ -120,6 +119,10 @@ h4 {
   font-size: 150%;
 }
 
+main {
+  padding: 50px;
+}
+
 @media screen and (min-width: 1024px) {
   body {
     background-color: #eee;
@@ -127,7 +130,6 @@ h4 {
 
   main {
     background-color: #fff;
-    padding: 50px;
   }
 }
 
