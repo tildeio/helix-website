@@ -31,6 +31,9 @@ module Kramdown
           elsif child.type == :li
             p = child.children[0]
             text = p.children[0]
+
+            next child unless text && text.type == :text
+
             task = text.value.match(/^\[(?<checked>[xX ])\]/)
 
             next child unless task
