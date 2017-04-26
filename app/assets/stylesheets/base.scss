@@ -10,6 +10,16 @@ ul ul {
   padding-left: 1rem;
 }
 
+textarea.inline {
+  width: 100%;
+  min-height: 200px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+form {
+  margin-bottom: 1rem;
+}
+
 pre {
   font-size: 90%;
 }

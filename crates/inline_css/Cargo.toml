@@ -1,0 +1,12 @@
+[package]
+name = "inline-css"
+version = "0.1.0"
+authors = ["Yehuda Katz <wycats@gmail.com>"]
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+helix = "0.5.0"
+cssparser = "0.12"
+kuchiki = "0.4.3"

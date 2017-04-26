@@ -11,11 +11,7 @@ use std::io::prelude::*;
 use rayon::iter::{ParallelIterator, IntoParallelIterator};
 
 fn lines(corpus: &str) -> Vec<&str> {
-    corpus.lines()
-        //   .map(|line| {
-        //       line.splitn(4, ',').nth(3).unwrap().trim()
-        //   })
-          .collect()
+    corpus.lines().collect()
 }
 
 fn matches(word: &str, search: &str) -> bool {
