@@ -41,7 +41,7 @@ class CountWordsController < ApplicationController
   def index
     # WordCount is written in Rust
     render json: {
-      distribution: WordCount.new(params[:shakespeare]).distribution
+      count: WordCount.search("shakespeare-plays.txt", "thee")
     }
   end
 end
