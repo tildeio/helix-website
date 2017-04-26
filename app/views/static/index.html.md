@@ -71,6 +71,7 @@ ruby! {
 
 </section>
 
+<!--
 <section markdown="1" id="how">
 
 ### HOW DOES IT WORK?
@@ -78,6 +79,7 @@ ruby! {
 
 
 </section>
+-->
 
 {: .hi-five}
 <%= image_tag "ruby-rust-hi-five.png", class: "hi-five" %>
