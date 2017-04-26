@@ -1,8 +1,6 @@
 # Getting Started
 {:.no_toc}
 
-{::options auto_ids=true /}
-
 {:toc}
 {: [start=0] }
 * TOC
