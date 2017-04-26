@@ -223,6 +223,12 @@ body {
   padding-top: 10px;
 }
 
+.progress-bar-container.zero-percent .progress-bar {
+  color: black;
+  padding-left: 5px;
+  background-color: transparent;
+}
+
 .footer {
   border-top: 1px solid gray;
   font-size: 0.875rem;
