@@ -1,3 +1,12 @@
+<h1>Inline CSS</h1>
+
+<p>
+  InlineCSS uses the <code><%= github_link "inline_css", "crates/inline_css" %></code>
+  crate, which uses Servo's <code><%= link_to "cssparser", "https://github.com/servo/rust-cssparser" %></code>
+  and <code><%= link_to "html5ever", "https://github.com/servo/html5ever" %></code> crates to inline a CSS
+  file into an HTML file.
+</p>
+
 <%= form_tag do %>
   <p>HTML</p>
   <p>
@@ -15,3 +24,16 @@
 <hr>
 <pre class="language-html"><code class="language-html"><%= @inlined -%></code></pre>
 <%- end -%>
+
+<p>
+  <h3>Source</h3>
+
+  <ul>
+    <li>
+      <%= github_link "Crate", "crates/inline_css/" %>:
+      <%= github_link "Class", "crates/inline_css/src/lib.rs" %>
+    </li>
+    <li><%= github_link "Controller", "app/controllers/demos/inline_css_controller.rb" %></li>
+    <li><%= github_link "View", "app/views/demos/inline_css/show.html.erb" %></li>
+  </ul>
+</p>
