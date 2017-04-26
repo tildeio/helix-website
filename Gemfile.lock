@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/tildeio/helix-rails.git
-  revision: a1fd08ebe1f232feb5185e38e7b668b264aca8a2
+  revision: 4639f89572cad1b7d0711fd3d2174276509e6c7b
   specs:
-    helix-rails (0.5.0.alpha.2)
-      helix_runtime (>= 0.5.0.alpha.2)
+    helix-rails (0.5.0.alpha.4)
+      helix_runtime (>= 0.5.0.alpha.4)
       rails (>= 4.0)
 
 PATH
@@ -11,6 +11,12 @@ PATH
   specs:
     text_transform (1.0.0)
       helix_runtime (~> 0.5.0.alpha.2)
+
+PATH
+  remote: crates/word_count
+  specs:
+    word_count (1.0.0)
+      helix_runtime (~> 0.5.0.alpha.4)
 
 GEM
   remote: https://rubygems.org/
@@ -220,6 +226,7 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
   webpacker
+  word_count!
 
 BUNDLED WITH
    1.14.6

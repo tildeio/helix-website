@@ -1,0 +1,50 @@
+dist: trusty # For linux
+
+sudo: false
+
+language: ruby
+rvm:
+  - 2.4.1
+
+cache:
+  directories:
+    - $HOME/.rvm/gems
+    - $HOME/.cargo
+    - $HOME/.multirust
+
+env:
+  global:
+    - RUST_BACKTRACE=1
+    - RUST_VERSION=beta
+
+matrix:
+  include:
+      env: RUST_VERSION=nightly
+  allow_failures:
+    - env: RUST_VERSION=nightly
+
+before_install:
+  - if [ ! -e "$HOME/.cargo/bin" ]; then curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain $RUST_VERSION -y; fi
+  - export PATH="$HOME/.cargo/bin:$PATH"
+  - rustup default $RUST_VERSION
+
+install:
+  - bundle install
+  - bundle exec rake build
+  - |
+    set -e
+    for D in crates/*; do
+      pushd "${D}"
+      BUNDLE_GEMFILE=$PWD/Gemfile bundle install
+      popd
+    done
+
+script:
+  - bundle exec rake
+  - |
+    set -e
+    for D in crates/*; do
+      pushd "${D}"
+      BUNDLE_GEMFILE=$PWD/Gemfile bundle install
+      popd
+    done
