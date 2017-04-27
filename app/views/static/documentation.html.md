@@ -231,18 +231,20 @@ item inside a class.
 {: .note}
 
 ```{src/lib.rs}rust
-#[use_macros]
+#[macro_use]
 extern crate helix;
 
 ruby! {
     class Line {
         struct {
-            p1: Point,
-            p2: Point
+            x1: f64,
+            y1: f64,
+            x2: f64,
+            y2: f64
         }
 
-        def distance(&self) {
-            let (dx, dy) = (self.p1.x - self.p2.x, self.p1.y - self.p2.y);
+        def distance(&self) -> f64 {
+            let (dx, dy) = (self.x1 - self.x2, self.y1 - self.y2);
             dx.hypot(dy)
         }
     }
@@ -253,11 +255,12 @@ ruby! {
             y: f64
         }
 
-        join(&self, second: &Point) -> Line {
-            // Functional update
+        def join(&self, second: &Point) -> Line {
             Line {
-                p1: Point { x: self.x, y: self.y },
-                p2: Point { x: second.x, y: second.y }
+                x1: self.x,
+                y1: self.y,
+                x2: second.x,
+                y2: second.y
             }
         }
     }
@@ -270,22 +273,24 @@ A Helix class with a `struct` must also define an initializer.
 
 
 ```{src/lib.rs}rust
-#[use_macros]
+#[macro_use]
 extern crate helix;
 
 ruby! {
     class Line {
         struct {
-            p1: Point,
-            p2: Point
+            x1: f64,
+            y1: f64,
+            x2: f64,
+            y2: f64
         }
 
-        def initialize(helix, p1: Point, p2: Point) {
-            Line { helix, p1, p2 }
+        def initialize(helix, p1: &Point, p2: &Point) {
+            Line { helix, x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y }
         }
 
-        def distance(&self) {
-            let (dx, dy) = (self.p1.x - self.p2.x, self.p1.y - self.p2.y);
+        def distance(&self) -> f64 {
+            let (dx, dy) = (self.x1 - self.x2, self.y1 - self.y2);
             dx.hypot(dy)
         }
     }
@@ -300,16 +305,14 @@ ruby! {
             Point { helix, x, y }
         }
 
-        join(&self, second: &Point) -> Line {
-            // Functional update
-            Line {
-                p1: Point { x: self.x, y: self.y },
-                p2: Point { x: second.x, y: second.y }
-            }
+        def join(&self, second: &Point) -> Line {
+            Line::new(self, second)
         }
     }
 }
 ```
+
+(See the [LinePoint Demo](/demos/line_point) for the full example.)
 
 The `initialize` method has a few differences from normal methods:
 
