@@ -100,7 +100,7 @@ ruby! {
 >> require 'console'
 >> Console.log("Hi from Rust!");
 "LOG: Hi from Rust"
->> Console.new.log("Hi from Rust. Stern warning")
+>> Console.new.warn("Hi from Rust. Stern warning")
 "WARN: Hi from Rust. Stern warning"
 ```
 
