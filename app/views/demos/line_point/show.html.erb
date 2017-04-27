@@ -1,0 +1,43 @@
+<h1>Line and Point</h1>
+
+<p>
+  Line and Point uses the <code><%= github_link "line_point", "crates/line_point" %></code>
+  crate, which defines classes that use Helix's `struct` support.
+</p>
+
+<%= form_tag do %>
+  <p>Point 1</p>
+  <p>
+    X: <%= text_field_tag :x1, @p1.try(:x), class: "inline" %>
+    Y: <%= text_field_tag :y1, @p1.try(:y), class: "inline" %>
+  </p>
+  <p>Point 2</p>
+  <p>
+    X: <%= text_field_tag :x2, @p2.try(:x), class: "inline" %>
+    Y: <%= text_field_tag :y2, @p2.try(:y), class: "inline" %>
+  </p>
+
+  <%= button_tag "Calculate Distance" %>
+<% end %>
+
+<%- if @p1 && @p2 && @line -%>
+<hr>
+<p>
+  <strong>P1:</strong> <%= @p1.x %>, <%= @p1.y %><br>
+  <strong>P2:</strong> <%= @p2.x %>, <%= @p2.y %><br>
+  <strong>Line Distance:</strong> <%= @line.distance %>
+</p>
+<%- end -%>
+
+<p>
+  <h3>Source</h3>
+
+  <ul>
+    <li>
+      <%= github_link "Crate", "crates/inline_css/" %>:
+      <%= github_link "Class", "crates/inline_css/src/lib.rs" %>
+    </li>
+    <li><%= github_link "Controller", "app/controllers/demos/inline_css_controller.rb" %></li>
+    <li><%= github_link "View", "app/views/demos/inline_css/show.html.erb" %></li>
+  </ul>
+</p>

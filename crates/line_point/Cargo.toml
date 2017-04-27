@@ -1,0 +1,9 @@
+[package]
+name = "line_point"
+version = "0.1.0"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+helix = "0.5.0"

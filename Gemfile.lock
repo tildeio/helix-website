@@ -5,6 +5,12 @@ PATH
       helix_runtime (~> 0.5.0.alpha.4)
 
 PATH
+  remote: crates/line_point
+  specs:
+    line_point (1.0.0)
+      helix_runtime (~> 0.5.0)
+
+PATH
   remote: crates/text_transform
   specs:
     text_transform (1.0.0)
@@ -213,6 +219,7 @@ DEPENDENCIES
   inline_css!
   jbuilder (~> 2.5)
   kramdown
+  line_point!
   listen (>= 3.0.5, < 3.2)
   normalize-rails
   prism-rails

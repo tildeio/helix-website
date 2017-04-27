@@ -21,5 +21,10 @@ InlineCSS uses the <code><%= github_link "inline_css", "crates/inline_css" %></c
 crate, which uses Servo's [cssparser][cssparser] and [html5ever][html5ever] crates
 to inline a CSS file into an HTML file.
 
+## <%= link_to "Line and Point", demos_line_point_url %>
+
+Line and Point uses the <code><%= github_link "line_point", "crates/line_point" %></code>
+crate, which defines classes that use Helix's `struct` support.
+
 [cssparser]: https://github.com/servo/rust-cssparser
 [html5ever]: https://github.com/servo/html5ever
