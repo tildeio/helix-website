@@ -97,7 +97,7 @@ Rust compiler to compile your Helix projects.
 - [X] Document Helix in Rails
 - [ ] Document Helix in other application environments
 - [ ] Instructions for non-Heroku deployment
-- [ ] Support Rust stable (we currently require beta)
+- [X] Support Rust stable
 - [ ] `extconf.rb` support
 
 ## Binary distribution

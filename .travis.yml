@@ -15,7 +15,7 @@ cache:
 env:
   global:
     - RUST_BACKTRACE=1
-    - RUST_VERSION=beta
+    - RUST_VERSION=stable
 
 matrix:
   include:

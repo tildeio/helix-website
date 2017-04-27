@@ -33,13 +33,6 @@ latest version of Rust:
 $ rustup update
 ```
 
-Finally, Helix currently requires the beta version of Rust. Since rustup only
-installs the stable verion by default, we will need to install that manually:
-
-```plain
-$ rustup install beta
-```
-
 # Step 1: Create a new Rails project
 
 First, we'll need a new rails project. (If you are integrating Helix into an
@@ -66,13 +59,6 @@ Once you have verified that everything is working, exit the Rails server by
 pressing **Ctrl+C**.
 
 # Step 2: Generate a Helix crate
-
-As mentioned above, Helix currently requires the beta version of Rust, so we
-will need to *override* the default Rust version within our app:
-
-```{~/code/flipper/}plain
-$ rustup override set beta
-```
 
 To start using Helix, add the `helix-rails` gem to your Gemfile:
 
