@@ -94,7 +94,7 @@ extern crate helix;
 ruby! {
     class TextTransform {
         def hello() {
-            println!("Hello form text_transform!");
+            println!("Hello from text_transform!");
         }
     }
 }
@@ -107,7 +107,7 @@ code and puts us into an irb session:
 ```{~/code/flipper/crates/text_transform/}plain
 $ rake irb
 >> TextTransform.hello
-Hello form text_transform!
+Hello from text_transform!
 => nil
 ```
 
