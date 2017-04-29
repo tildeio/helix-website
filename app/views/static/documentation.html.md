@@ -18,7 +18,7 @@ helix = "*"
 ```
 
 ```{src/lib.rs}rust
-#[use_macros]
+#[macro_use]
 extern crate helix;
 
 ruby! {
@@ -33,7 +33,7 @@ Inside the `ruby!` macro, you create a new class using the `class` keyword.
 Classes open with a `{` and close with a `}`.
 
 ```{src/lib.rs}rust
-#[use_macros]
+#[macro_use]
 extern crate helix;
 
 ruby! {
@@ -49,7 +49,7 @@ Inside a class, start methods with a `def` followed by the name of the method,
 followed by a normal Rust method signature.
 
 ```{src/lib.rs}rust
-#[use_macros]
+#[macro_use]
 extern crate helix;
 
 ruby! {
@@ -78,7 +78,7 @@ first parameter.
 {: .note }
 
 ```{src/lib.rs}rust
-#[use_macros]
+#[macro_use]
 extern crate helix;
 
 ruby! {
@@ -137,7 +137,7 @@ to the method, and raise a `TypeError` if any of the Ruby values don't
 match the rules for that type.
 
 ```{src/lib.rs}rust
-#[use_macros]
+#[macro_use]
 extern crate helix;
 
 ruby! {
@@ -182,7 +182,7 @@ Rust types back into Ruby.
 
 
 ```{src/lib.rs}rust
-#[use_macros]
+#[macro_use]
 extern crate helix;
 
 ruby! {
