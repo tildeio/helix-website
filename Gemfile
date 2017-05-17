@@ -58,6 +58,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Demos
 gem 'helix-rails', '~> 0.5.0'
+
 gem 'text_transform', path: 'crates/text_transform'
 gem 'word_count', path: 'crates/word_count'
 gem 'inline_css', path: 'crates/inline_css'

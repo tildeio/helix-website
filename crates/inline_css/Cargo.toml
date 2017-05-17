@@ -7,6 +7,6 @@ authors = ["Yehuda Katz <wycats@gmail.com>"]
 crate-type = ["cdylib"]
 
 [dependencies]
-helix = "0.5.0"
+helix = "0.6.0"
 cssparser = "0.12"
 kuchiki = "0.4.3"

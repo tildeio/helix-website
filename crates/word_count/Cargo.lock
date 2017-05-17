@@ -2,13 +2,22 @@
 name = "word_count"
 version = "0.1.0"
 dependencies = [
- "helix 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "helix 0.6.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "rayon 0.7.0 (git+https://github.com/nikomatsakis/rayon)",
 ]
 
 [[package]]
+name = "coco"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "either 1.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "scopeguard 0.3.2 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "cslice"
-version = "0.2.0"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
@@ -17,19 +26,19 @@ version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
-name = "deque"
-version = "0.3.2"
+name = "either"
+version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "helix"
-version = "0.5.0"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "cslice 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "cslice 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "cstr-macro 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "libc 0.2.21 (registry+https://github.com/rust-lang/crates.io-index)",
- "libcruby-sys 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.22 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libcruby-sys 0.6.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -39,15 +48,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "libc"
-version = "0.2.21"
+version = "0.2.22"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "libcruby-sys"
-version = "0.5.0"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "libc 0.2.21 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.22 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -55,7 +64,7 @@ name = "num_cpus"
 version = "1.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "libc 0.2.21 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.22 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -63,13 +72,13 @@ name = "rand"
 version = "0.3.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "libc 0.2.21 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.22 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "rayon"
 version = "0.7.0"
-source = "git+https://github.com/nikomatsakis/rayon#ad980b45c956375e2905aa6f479c48846d1d78b3"
+source = "git+https://github.com/nikomatsakis/rayon#e4fbfa9f1dba4b3e217e35da520a167705dca2a2"
 dependencies = [
  "rayon-core 1.0.0 (git+https://github.com/nikomatsakis/rayon)",
 ]
@@ -77,24 +86,31 @@ dependencies = [
 [[package]]
 name = "rayon-core"
 version = "1.0.0"
-source = "git+https://github.com/nikomatsakis/rayon#ad980b45c956375e2905aa6f479c48846d1d78b3"
+source = "git+https://github.com/nikomatsakis/rayon#e4fbfa9f1dba4b3e217e35da520a167705dca2a2"
 dependencies = [
- "deque 0.3.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "coco 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "lazy_static 0.2.8 (registry+https://github.com/rust-lang/crates.io-index)",
- "libc 0.2.21 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.22 (registry+https://github.com/rust-lang/crates.io-index)",
  "num_cpus 1.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "rand 0.3.15 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
+[[package]]
+name = "scopeguard"
+version = "0.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
 [metadata]
-"checksum cslice 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "697c714f50560202b1f4e2e09cd50a421881c83e9025db75d15f276616f04f40"
+"checksum coco 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "d4c6553a0adc9ca031ac7a55e825e11c9950a9b417e4032313aaf6bb68f37006"
+"checksum cslice 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)" = "0f8cb7306107e4b10e64994de6d3274bd08996a7c1322a27b86482392f96be0a"
 "checksum cstr-macro 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "db53fddba18cdd35477a7213a3ef6acfbfa333c31b42ce019e544c4a1420a06f"
-"checksum deque 0.3.2 (registry+https://github.com/rust-lang/crates.io-index)" = "a694dae478589798d752c7125542f8a5ae8b6e59476172baf2eed67357bdfa27"
-"checksum helix 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)" = "4e4a47b16ffda8d734cc35a314121de5b5c665acf7129eafc410639cdeda1732"
+"checksum either 1.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "18785c1ba806c258137c937e44ada9ee7e69a37e3c72077542cd2f069d78562a"
+"checksum helix 0.6.0 (registry+https://github.com/rust-lang/crates.io-index)" = "4b3d0b8579a68e79a629d9c2f4717dbf5e2b467a7d7afb38c737d573d46331ac"
 "checksum lazy_static 0.2.8 (registry+https://github.com/rust-lang/crates.io-index)" = "3b37545ab726dd833ec6420aaba8231c5b320814b9029ad585555d2a03e94fbf"
-"checksum libc 0.2.21 (registry+https://github.com/rust-lang/crates.io-index)" = "88ee81885f9f04bff991e306fea7c1c60a5f0f9e409e99f6b40e3311a3363135"
-"checksum libcruby-sys 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)" = "8828a85065ebe12f4847428346b99f4d5a30660d20fc97de9aa34e01d7a02c50"
+"checksum libc 0.2.22 (registry+https://github.com/rust-lang/crates.io-index)" = "babb8281da88cba992fa1f4ddec7d63ed96280a1a53ec9b919fd37b53d71e502"
+"checksum libcruby-sys 0.6.0 (registry+https://github.com/rust-lang/crates.io-index)" = "3bf276325da1f1b20cd68108b33c02dfcad26ff4f4d7fdac4cd2a5aac8f04ae5"
 "checksum num_cpus 1.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = "ca313f1862c7ec3e0dfe8ace9fa91b1d9cb5c84ace3d00f5ec4216238e93c167"
 "checksum rand 0.3.15 (registry+https://github.com/rust-lang/crates.io-index)" = "022e0636ec2519ddae48154b028864bdce4eaf7d35226ab8e65c611be97b189d"
 "checksum rayon 0.7.0 (git+https://github.com/nikomatsakis/rayon)" = "<none>"
 "checksum rayon-core 1.0.0 (git+https://github.com/nikomatsakis/rayon)" = "<none>"
+"checksum scopeguard 0.3.2 (registry+https://github.com/rust-lang/crates.io-index)" = "c79eb2c3ac4bc2507cda80e7f3ac5b88bd8eae4c0914d5663e6a8933994be918"

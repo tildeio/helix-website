@@ -2,25 +2,25 @@ PATH
   remote: crates/inline_css
   specs:
     inline_css (1.0.0)
-      helix_runtime (~> 0.5.0.alpha.4)
+      helix_runtime (~> 0.6.0)
 
 PATH
   remote: crates/line_point
   specs:
     line_point (1.0.0)
-      helix_runtime (~> 0.5.0)
+      helix_runtime (~> 0.6.0)
 
 PATH
   remote: crates/text_transform
   specs:
     text_transform (1.0.0)
-      helix_runtime (~> 0.5.0)
+      helix_runtime (~> 0.6.0)
 
 PATH
   remote: crates/word_count
   specs:
     word_count (1.0.0)
-      helix_runtime (~> 0.5.0)
+      helix_runtime (~> 0.6.0)
 
 GEM
   remote: https://rubygems.org/
@@ -95,7 +95,7 @@ GEM
     helix-rails (0.5.0)
       helix_runtime (>= 0.5.0)
       rails (>= 4.0)
-    helix_runtime (0.5.0)
+    helix_runtime (0.6.0)
       rake (>= 10.0)
       thor (~> 0.19.4)
     i18n (0.8.1)
