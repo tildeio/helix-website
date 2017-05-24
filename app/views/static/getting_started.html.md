@@ -1,6 +1,8 @@
 # Getting Started
 {:.no_toc}
 
+<iframe width="924" height="520" src="https://www.youtube.com/embed/nq1nNx8-fNQ?ecver=1&cc_load_policy=1" frameborder="0" allowfullscreen></iframe>
+
 {:toc}
 {: [start=0] }
 * TOC
@@ -127,7 +129,7 @@ First we will add `rspec` as development dependency:
 Gem::Specification.new do |s|
   s.name = 'text_transform'
   # ...
-  s.add_development_dependency 'rspec', '~> 3.4'
+  s.add_development_dependency 'rspec', '~> 3.6'
 end
 ```
 
@@ -222,6 +224,12 @@ The `flip` method takes a string as input, split it into characters, map each
 character into its "upside down lookalike" and join them back up into a new
 string.
 
+If you look at the code, you'll notice that we're using a lot of high-level
+features here such as iterators and blocks. Now this might sound suboptimal,
+but the Rust compiler will be able to see through all of that and generate
+highly-optimized machine code that could even outperform you carefully
+hand-written loop.
+
 Now that we have implemented the method, let's run the tests again:
 
 ```{~/code/flipper/crates/text_transform/}plain
@@ -269,6 +277,8 @@ Finished in 0.00348 seconds (files took 0.12317 seconds to load)
 2 examples, 0 failures
 ```
 
+# Step 4: Adding a feature
+
 To avoid needing to manually recompile, we can wrap this in a rake task and
 make `rake build` its dependency:
 
@@ -285,10 +295,112 @@ task :spec => :build
 task :default => :spec
 ```
 
-That way, running `rake spec` will always ensure the Rust code is built (and
-up-to-date) before running your tests, just like the built-in `rake irb` task.
+The trick is to make `rake build` a dependency of your spec task. That way,
+running `rake spec` will always ensure the Rust code is built (and up-to-date)
+before running your tests, just like the built-in `rake irb` task.
 
-# Step 4: Putting it all together
+To show you that workflow, let's try to add a new feature.
+
+
+```{~/code/flipper/crates/text_transform/spec/text_transform_spec.rb}ruby
+require "text_transform"
+
+describe "TextTransform" do
+  # it "can flip text" ...
+
+  # it "can flip the text back" ...
+
+  it "can flip table" do
+    expect(TextTransform.flip("┬──┬ ノ( ゜-゜ノ)")).to eq("(╯°□°）╯︵ ┻━┻")
+  end
+
+  it "can flip the table back" do
+    expect(TextTransform.flip("(╯°□°）╯︵ ┻━┻")).to eq("┬──┬ ノ( ゜-゜ノ)")
+  end
+end
+```
+
+As you can see, this is a pretty simple feature: if you give a table, it'll
+flip it; if you give it a flipped table, it'll flip it back.
+
+So now we can try running our test again with `rake spec`, and they're failing
+as expected.
+
+```{~/code/flipper/crates/text_transform/}plain
+$ rake spec
+cargo rustc --release -- -C link-args=-Wl,-undefined,dynamic_lookup
+   Compiling text_transform v0.1.0 (file:///~/code/flipper/crates/text_transform)
+    Finished release [optimized] target(s) in 1.7 secs
+..FF
+
+Failures:
+
+  1) TextTransform can flip table
+     Failure/Error: expect(TextTransform.flip("┬──┬ ノ( ゜-゜ノ)")).to eq("(╯°□°）╯︵ ┻━┻")
+
+       expected: "(╯°□°）╯︵ ┻━┻"
+            got: "(ノ゜-゜ )ノ ┬──┬"
+
+       (compared using ==)
+     # ./spec/text_transform_spec.rb:13:in `block (2 levels) in <top (required)>'
+
+  2) TextTransform can flip the table back
+     Failure/Error: expect(TextTransform.flip("(╯°□°）╯︵ ┻━┻")).to eq("┬──┬ ノ( ゜-゜ノ)")
+
+       expected: "┬──┬ ノ( ゜-゜ノ)"
+            got: "┻━┻ ︵╯）°□°╯)"
+
+       (compared using ==)
+     # ./spec/text_transform_spec.rb:17:in `block (2 levels) in <top (required)>'
+
+Finished in 0.02586 seconds (files took 0.14297 seconds to load)
+4 examples, 2 failures
+
+Failed examples:
+
+rspec ./spec/text_transform_spec.rb:12 # TextTransform can flip table
+rspec ./spec/text_transform_spec.rb:16 # TextTransform can flip the table back
+```
+
+With the tests in place, we can go ahead and implement our feature. This is
+going to be pretty straightforward; we're just going to have a conditional at
+the top to check for the special cases.
+
+```{~/code/flipper/crates/text_transform/src/lib.rs}rust
+#[macro_use]
+extern crate helix;
+
+ruby! {
+    class TextTransform {
+        def flip(text: String) -> String {
+            if text == "┬──┬ ノ( ゜-゜ノ)" {
+                return "(╯°□°）╯︵ ┻━┻".to_string();
+            } else if text == "(╯°□°）╯︵ ┻━┻" {
+                return "┬──┬ ノ( ゜-゜ノ)".to_string();
+            }
+
+            // ...
+        }
+    }
+}
+```
+
+Going back to the terminal, you can see that by running "rake spec", it
+automatically rebuilds our native extension. Therefore, everything Just
+Worked™.
+
+```{~/code/flipper/crates/text_transform/}plain
+$ rake spec
+cargo rustc --release -- -C link-args=-Wl,-undefined,dynamic_lookup
+   Compiling text_transform v0.1.0 (file:///~/code/flipper/crates/text_transform)
+    Finished release [optimized] target(s) in 1.9 secs
+....
+
+Finished in 0.00363 seconds (files took 0.13734 seconds to load)
+4 examples, 0 failures
+```
+
+# Step 5: Putting it all together
 
 Now that we have built a library to do the heavily-lifting for us, we wire
 everything up inside our Rails app.
@@ -327,7 +439,7 @@ And finally the template:
 <%% end %>
 ```
 
-After starting the Rails server with the `rails server` command, you should
+After starting the Rails server with the `bin/rails server` command, you should
 have a working *Flipper* app waiting for you at [http://localhost:3000](http://localhost:3000):
 
 <%= image_tag "getting-started/flipper.gif" %>
@@ -335,7 +447,7 @@ have a working *Flipper* app waiting for you at [http://localhost:3000](http://l
 As you can see, with pretty minimal effort, we were able to crate a Ruby native
 extension written in Rust using Helix, and integrate it into our Rails app.
 
-# Step 5: Deploy to Heroku
+# Step 6: Deploy to Heroku
 
 Finally, we will deploy our Flipper app to Heroku.
 
