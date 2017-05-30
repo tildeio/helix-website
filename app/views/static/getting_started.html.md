@@ -220,14 +220,14 @@ ruby! {
 }
 ```
 
-The `flip` method takes a string as input, split it into characters, map each
-character into its "upside down lookalike" and join them back up into a new
+The `flip` method takes a string as input, splits it into characters, maps each
+character into its "upside down lookalike" and joins them back up into a new
 string.
 
 If you look at the code, you'll notice that we're using a lot of high-level
 features here such as iterators and blocks. Now this might sound suboptimal,
 but the Rust compiler will be able to see through all of that and generate
-highly-optimized machine code that could even outperform you carefully
+highly-optimized machine code that could even outperform your carefully
 hand-written loop.
 
 Now that we have implemented the method, let's run the tests again:
@@ -256,7 +256,7 @@ Finished in 0.00068 seconds (files took 0.13472 seconds to load)
 2 examples, 2 failures
 ```
 
-Hm, it is not seeing the `flip` method we just implemented. This is because
+Hmm, it is not seeing the `flip` method we just implemented. This is because
 since Rust is a *compiled-language*, we would have to re-compile our code after
 making any changes:
 
@@ -444,7 +444,7 @@ have a working *Flipper* app waiting for you at [http://localhost:3000](http://l
 
 <%= image_tag "getting-started/flipper.gif" %>
 
-As you can see, with pretty minimal effort, we were able to crate a Ruby native
+As you can see, with pretty minimal effort, we were able to create a Ruby native
 extension written in Rust using Helix, and integrate it into our Rails app.
 
 # Step 6: Deploy to Heroku
@@ -468,7 +468,7 @@ $ heroku buildpacks:add https://github.com/hone/heroku-buildpack-rust
 $ heroku buildpacks:add heroku/ruby
 ```
 
-These commands adds the [Rust buildpack](https://github.com/hone/heroku-buildpack-rust),
+These commands add the [Rust buildpack](https://github.com/hone/heroku-buildpack-rust),
 which makes the Rust compiler available, as well as the regular Ruby buildpack
 that knows how to configure a Rails app.
 
@@ -479,7 +479,7 @@ $ git push heroku master
 ```
 
 With that, you should have a working *Flipper* app – powered by Rust, running
-instead a Rails app – up and running on the Internet. Congratulations!
+inside a Rails app – up and running on the Internet. Congratulations!
 
 # Further reading
 
