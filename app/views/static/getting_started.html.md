@@ -103,8 +103,8 @@ ruby! {
 ```
 
 This defines a simple Ruby class `TextTransform` with a single class method. To
-test this out, we can run `rake irb`, which automatically compiles the Rust
-code and puts us into an irb session:
+test this out, we can run `rake irb` from `crates/text_transform`, which
+automatically compiles the Rust code and puts us into an irb session:
 
 ```{~/code/flipper/crates/text_transform/}plain
 $ rake irb
