@@ -1,6 +1,6 @@
 ## Resources
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=lBapt5YDDvg?ecver=1" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/lBapt5YDDvg?ecver=1" frameborder="0" allowfullscreen></iframe>
 
 Godfrey and Yehuda's talk at RailsConf 2017
 
