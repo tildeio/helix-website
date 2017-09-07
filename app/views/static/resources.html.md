@@ -1,5 +1,13 @@
 ## Resources
 
+<iframe width="560" height="315" src="https://www.youtube.com/watch?v=lBapt5YDDvg?ecver=1" frameborder="0" allowfullscreen></iframe>
+
+Godfrey and Yehuda's talk at RailsConf 2017
+
+Related blog post [here](http://blog.skylight.io/helix-one-year-later/).
+
+---
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/PbJI8yCsEkA?ecver=1" frameborder="0" allowfullscreen></iframe>
 
 Godfrey's talk introducing Helix at RailsConf 2016
