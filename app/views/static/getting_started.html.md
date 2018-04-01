@@ -62,7 +62,7 @@ pressing **Ctrl+C**.
 
 # Step 2: Generate a Helix crate
 
-To start using Helix, add the `helix-rails` gem to your Gemfile:
+To start using Helix, add the `helix-rails` gem to your Gemfile. (Note: The version of `helix-rails` does not necessarily match the version of the `helix_runtime` gem or the `helix` crate)
 
 ```{Gemfile}ruby
 source 'https://rubygems.org'
